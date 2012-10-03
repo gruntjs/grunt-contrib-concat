@@ -1,8 +1,8 @@
 /*
  * grunt-contrib-concat
- * https://github.com/gruntjs/grunt-contrib-concat
+ * http://gruntjs.com/
  *
- * Copyright (c) 2012 "Cowboy" Ben Alman
+ * Copyright (c) 2012 "Cowboy" Ben Alman, contributors
  * Licensed under the MIT license.
  */
 
