@@ -1,4 +1,4 @@
-# grunt-contrib-concat (not released)
+# grunt-contrib-concat (unreleased, for grunt v0.4.0a)
 
 > Concatenate files.
 
