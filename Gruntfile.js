@@ -31,8 +31,6 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     concat: {
       default_options: {
-        options: {
-        },
         files: {
           'tmp/default_options': ['test/fixtures/file1', 'test/fixtures/file2']
         }
