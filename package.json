@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-concat",
   "description": "Concatenate files.",
-  "version": "0.4.0",
+  "version": "0.1.0",
   "homepage": "https://github.com/gruntjs/grunt-contrib-concat",
   "author": {
     "name": "Grunt Team",
@@ -28,10 +28,10 @@
     "test": "grunt test"
   },
   "devDependencies": {
+    "grunt-contrib-jshint": "0.1.0",
     "grunt-contrib-clean": "0.4.0a",
     "grunt": "~0.4.0a"
   },
   "keywords": [
-    "gruntplugin"
   ]
 }
