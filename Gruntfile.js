@@ -64,6 +64,9 @@ module.exports = function(grunt) {
   // The clean plugin helps in testing.
   grunt.loadNpmTasks('grunt-contrib-clean');
 
+  // The nodeunit plugin runs the tests.
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
   grunt.registerTask('test', ['clean', 'concat', 'nodeunit']);
