@@ -231,5 +231,4 @@ grunt.initConfig({
 
 ## Release History
 
-_(Nothing yet)_
-
+ * 2012-10-02 - v0.1.0 - Work in progress.
