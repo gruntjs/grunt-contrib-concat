@@ -1,3 +1,5 @@
+## Options
+
 ### options.separator
 Type: `String`
 Default value: linefeed
