@@ -1,6 +1,67 @@
-## Usage Examples
+### Overview
 
-### Concatenating with a custom separator
+In your project's Gruntfile, add a section named `concat` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  concat: {
+    options: {
+      // Task-specific options go here.
+    },
+    your_target: {
+      // Target-specific file lists and/or options go here.
+    },
+  },
+})
+```
+
+### Options
+
+#### options.separator
+Type: `String`
+Default value: linefeed
+
+Concatenated files will be joined on this string.
+
+#### options.banner
+Type: `String`
+Default value: empty string
+
+This string will be prepended to the beginning of the concatenated output. It is processed using [grunt.template.process][], using the default options.
+
+_(Default processing options are explained in the [grunt.template.process][] documentation)_
+
+#### options.stripBanners
+Type: `Boolean`, `Object`
+Default value: `false`
+
+Strip JavaScript banner comments from source files.
+
+* `false` - No comments are stripped.
+* `true` - `/* ... */` block comments are stripped, but _NOT_ `/*! ... */` comments.
+* `options` object:
+  * By default, behaves as if `true` were specified.
+  * `options.block` - If true, _all_ block comments are stripped.
+  * `options.line` - If true, any contiguous _leading_ `//` line comments are stripped.
+
+#### options.process
+Type: `Boolean`, `Object`
+Default value: `false`
+
+Process source files as [templates][] before concatenating.
+
+* `false` - No processing will occur.
+* `true` - Process source files using [grunt.template.process][] defaults.
+* `options` object - Process source files using [grunt.template.process][], using the specified options.
+
+_(Default processing options are explained in the [grunt.template.process][] documentation)_
+
+  [templates]: https://github.com/gruntjs/grunt/blob/devel/docs/api_template.md
+  [grunt.template.process]: https://github.com/gruntjs/grunt/blob/devel/docs/api_template.md#grunttemplateprocess
+
+### Usage Examples
+
+#### Concatenating with a custom separator
 
 In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][] will concatenate the three specified source files (in order), joining files with `;` and writing the output to `dist/built.js`.
 
@@ -19,7 +80,7 @@ grunt.initConfig({
 });
 ```
 
-### Banner comments
+#### Banner comments
 
 In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][]) will first strip any preexisting banner comment from the `src/project.js` file, then concatenate the result with a newly-generated banner comment, writing the output to `dist/built.js`.
 
@@ -45,7 +106,7 @@ grunt.initConfig({
 });
 ```
 
-### Multiple targets
+#### Multiple targets
 
 In this example, running `grunt concat` will build two separate files. One "basic" version, with the main file essentially just copied to `dist/basic.js`, and another "with_extras" concatenated version written to `dist/with_extras.js`.
 
@@ -67,7 +128,7 @@ grunt.initConfig({
 });
 ```
 
-### Multiple files per target
+#### Multiple files per target
 
 Like the previous example, in this example running `grunt concat` will build two separate files. One "basic" version, with the main file essentially just copied to `dist/basic.js`, and another "with_extras" concatenated version written to `dist/with_extras.js`.
 
@@ -89,7 +150,7 @@ grunt.initConfig({
 });
 ```
 
-### Dynamic filenames
+#### Dynamic filenames
 
 Filenames can be generated dynamically by using `<%= %>` delimited underscore templates as filenames.
 
@@ -108,7 +169,7 @@ grunt.initConfig({
 });
 ```
 
-### Advanced dynamic filenames
+#### Advanced dynamic filenames
 
 In this more involved example, running `grunt concat` will build two separate files (because `concat` is a [multi task][]). The destination file paths will be expanded dynamically based on the specified templates, recursively if necessary.
 

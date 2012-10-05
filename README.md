@@ -1,31 +1,34 @@
-# grunt-contrib-concat [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-concat) (unreleased, for grunt v0.4.0a)
+# grunt-contrib-concat [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-concat)
 
 > Concatenate files.
 
+_Note that this plugin has not yet been released, and only works with the latest bleeding-edge, in-development version of grunt. See the [When will I be able to use in-development feature 'X'?](https://github.com/gruntjs/grunt/blob/devel/docs/faq.md#when-will-i-be-able-to-use-in-development-feature-x) FAQ entry for more information._
 
 ## Getting Started
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
 
-Install this grunt plugin next to your project's [Gruntfile][Getting Started] with the following command. This will also add the plugin to your project's `package.json` file as a `devDependency`.
+From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
 
-```
+```bash
 npm install grunt-contrib-concat --save-dev
 ```
 
-Then add this line to your project's Gruntfile:
+Once that's done, add this line to your project's Gruntfile:
 
-```javascript
+```js
 grunt.loadNpmTasks('grunt-contrib-concat');
 ```
 
-If the plugin was installed correctly, running `grunt --help` at the command line should list the newly-installed plugin's task(s) as a local Npm module task.
+If the plugin has been installed correctly, running `grunt --help` at the command line should list the newly-installed plugin's task or tasks. In addition, the plugin should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
 
 [grunt]: http://gruntjs.com/
 [Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+[package.json]: https://npmjs.org/doc/json.html
 
 
+## The concat task
 
-## Overview
+### Overview
 
 In your project's Gruntfile, add a section named `concat` to the data object passed into `grunt.initConfig()`.
 
@@ -42,16 +45,15 @@ grunt.initConfig({
 })
 ```
 
+### Options
 
-## Options
-
-### options.separator
+#### options.separator
 Type: `String`
 Default value: linefeed
 
 Concatenated files will be joined on this string.
 
-### options.banner
+#### options.banner
 Type: `String`
 Default value: empty string
 
@@ -59,7 +61,7 @@ This string will be prepended to the beginning of the concatenated output. It is
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
-### options.stripBanners
+#### options.stripBanners
 Type: `Boolean`, `Object`
 Default value: `false`
 
@@ -72,7 +74,7 @@ Strip JavaScript banner comments from source files.
   * `options.block` - If true, _all_ block comments are stripped.
   * `options.line` - If true, any contiguous _leading_ `//` line comments are stripped.
 
-### options.process
+#### options.process
 Type: `Boolean`, `Object`
 Default value: `false`
 
@@ -87,10 +89,9 @@ _(Default processing options are explained in the [grunt.template.process][] doc
   [templates]: https://github.com/gruntjs/grunt/blob/devel/docs/api_template.md
   [grunt.template.process]: https://github.com/gruntjs/grunt/blob/devel/docs/api_template.md#grunttemplateprocess
 
+### Usage Examples
 
-## Usage Examples
-
-### Concatenating with a custom separator
+#### Concatenating with a custom separator
 
 In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][] will concatenate the three specified source files (in order), joining files with `;` and writing the output to `dist/built.js`.
 
@@ -109,7 +110,7 @@ grunt.initConfig({
 });
 ```
 
-### Banner comments
+#### Banner comments
 
 In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][]) will first strip any preexisting banner comment from the `src/project.js` file, then concatenate the result with a newly-generated banner comment, writing the output to `dist/built.js`.
 
@@ -135,7 +136,7 @@ grunt.initConfig({
 });
 ```
 
-### Multiple targets
+#### Multiple targets
 
 In this example, running `grunt concat` will build two separate files. One "basic" version, with the main file essentially just copied to `dist/basic.js`, and another "with_extras" concatenated version written to `dist/with_extras.js`.
 
@@ -157,7 +158,7 @@ grunt.initConfig({
 });
 ```
 
-### Multiple files per target
+#### Multiple files per target
 
 Like the previous example, in this example running `grunt concat` will build two separate files. One "basic" version, with the main file essentially just copied to `dist/basic.js`, and another "with_extras" concatenated version written to `dist/with_extras.js`.
 
@@ -179,7 +180,7 @@ grunt.initConfig({
 });
 ```
 
-### Dynamic filenames
+#### Dynamic filenames
 
 Filenames can be generated dynamically by using `<%= %>` delimited underscore templates as filenames.
 
@@ -198,7 +199,7 @@ grunt.initConfig({
 });
 ```
 
-### Advanced dynamic filenames
+#### Advanced dynamic filenames
 
 In this more involved example, running `grunt concat` will build two separate files (because `concat` is a [multi task][]). The destination file paths will be expanded dynamically based on the specified templates, recursively if necessary.
 
@@ -229,6 +230,7 @@ grunt.initConfig({
 
 
 
+
 ## Release History
 
- * 2012-10-02 - v0.1.0 - Work in progress.
+ * 2012-10-02 - v0.1.0 - Work in progress, not yet officially released.
