@@ -230,7 +230,9 @@ grunt.initConfig({
 
 
 
-
 ## Release History
 
  * 2012-10-02 - v0.1.0 - Work in progress, not yet officially released.
+
+--
+Task submitted by <a href="http://benalman.com/">"Cowboy" Ben Alman</a>.
