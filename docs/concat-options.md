@@ -1,21 +1,22 @@
 # Options
+{%= s.multi_task_options %}
 
-## options.separator
-Type: `String`
+## separator
+Type: `String`  
 Default value: linefeed
 
-Concatenated files will be joined on this string.
+Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you may need to use a semicolon `';'` as the separator.
 
-## options.banner
-Type: `String`
+## banner
+Type: `String`  
 Default value: empty string
 
 This string will be prepended to the beginning of the concatenated output. It is processed using [grunt.template.process][], using the default options.
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
-## options.stripBanners
-Type: `Boolean`, `Object`
+## stripBanners
+Type: `Boolean`, `Object`  
 Default value: `false`
 
 Strip JavaScript banner comments from source files.
@@ -24,11 +25,11 @@ Strip JavaScript banner comments from source files.
 * `true` - `/* ... */` block comments are stripped, but _NOT_ `/*! ... */` comments.
 * `options` object:
   * By default, behaves as if `true` were specified.
-  * `options.block` - If true, _all_ block comments are stripped.
-  * `options.line` - If true, any contiguous _leading_ `//` line comments are stripped.
+  * `block` - If true, _all_ block comments are stripped.
+  * `line` - If true, any contiguous _leading_ `//` line comments are stripped.
 
-## options.process
-Type: `Boolean`, `Object`
+## process
+Type: `Boolean`, `Object`  
 Default value: `false`
 
 Process source files as [templates][] before concatenating.
