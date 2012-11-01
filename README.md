@@ -5,64 +5,40 @@
 _Note that this plugin has not yet been released, and only works with the latest bleeding-edge, in-development version of grunt. See the [When will I be able to use in-development feature 'X'?](https://github.com/gruntjs/grunt/blob/devel/docs/faq.md#when-will-i-be-able-to-use-in-development-feature-x) FAQ entry for more information._
 
 ## Getting Started
-_If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
+If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
 
-From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
-
-```bash
+```shell
 npm install grunt-contrib-concat --save-dev
 ```
 
-Once that's done, add this line to your project's Gruntfile:
-
-```js
-grunt.loadNpmTasks('grunt-contrib-concat');
-```
-
-If the plugin has been installed correctly, running `grunt --help` at the command line should list the newly-installed plugin's task or tasks. In addition, the plugin should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
-
 [grunt]: http://gruntjs.com/
 [Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
-[package.json]: https://npmjs.org/doc/json.html
 
 
-## The concat task
+## Concat task
+_Run this task with the `grunt concat` command._
 
-### Overview
-
-In your project's Gruntfile, add a section named `concat` to the data object passed into `grunt.initConfig()`.
-
-```js
-grunt.initConfig({
-  concat: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
-})
-```
 
 ### Options
+_The following options are specified in the task configuration according to the [multi task options](https://github.com/gruntjs/grunt/blob/devel/docs/tasks.md) format._
 
-#### options.separator
-Type: `String`
+
+#### separator
+Type: `String`  
 Default value: linefeed
 
-Concatenated files will be joined on this string.
+Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you may need to use a semicolon `';'` as the separator.
 
-#### options.banner
-Type: `String`
+#### banner
+Type: `String`  
 Default value: empty string
 
 This string will be prepended to the beginning of the concatenated output. It is processed using [grunt.template.process][], using the default options.
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
-#### options.stripBanners
-Type: `Boolean`, `Object`
+#### stripBanners
+Type: `Boolean`, `Object`  
 Default value: `false`
 
 Strip JavaScript banner comments from source files.
@@ -71,11 +47,11 @@ Strip JavaScript banner comments from source files.
 * `true` - `/* ... */` block comments are stripped, but _NOT_ `/*! ... */` comments.
 * `options` object:
   * By default, behaves as if `true` were specified.
-  * `options.block` - If true, _all_ block comments are stripped.
-  * `options.line` - If true, any contiguous _leading_ `//` line comments are stripped.
+  * `block` - If true, _all_ block comments are stripped.
+  * `line` - If true, any contiguous _leading_ `//` line comments are stripped.
 
-#### options.process
-Type: `Boolean`, `Object`
+#### process
+Type: `Boolean`, `Object`  
 Default value: `false`
 
 Process source files as [templates][] before concatenating.
@@ -232,7 +208,10 @@ grunt.initConfig({
 
 ## Release History
 
- * 2012-10-02 - v0.1.0 - Work in progress, not yet officially released.
+ * 2012-10-02   v0.1.0   Work in progress, not yet officially released.
 
---
-Task submitted by <a href="http://benalman.com/">"Cowboy" Ben Alman</a>.
+---
+
+Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
+
+*This file was generated on Thu Nov 01 2012 10:40:14.*
