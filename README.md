@@ -25,13 +25,13 @@ _The following options are specified in the task configuration according to the 
 
 #### separator
 Type: `String`  
-Default value: linefeed
+Default: linefeed
 
 Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you may need to use a semicolon `';'` as the separator.
 
 #### banner
 Type: `String`  
-Default value: empty string
+Default: empty string
 
 This string will be prepended to the beginning of the concatenated output. It is processed using [grunt.template.process][], using the default options.
 
@@ -39,7 +39,7 @@ _(Default processing options are explained in the [grunt.template.process][] doc
 
 #### stripBanners
 Type: `Boolean`, `Object`  
-Default value: `false`
+Default: `false`
 
 Strip JavaScript banner comments from source files.
 
@@ -52,7 +52,7 @@ Strip JavaScript banner comments from source files.
 
 #### process
 Type: `Boolean`, `Object`  
-Default value: `false`
+Default: `false`
 
 Process source files as [templates][] before concatenating.
 
@@ -214,4 +214,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Thu Nov 01 2012 10:40:14.*
+*This file was generated on Thu Nov 01 2012 10:44:53.*
