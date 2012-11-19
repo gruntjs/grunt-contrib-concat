@@ -208,10 +208,11 @@ grunt.initConfig({
 
 ## Release History
 
+ * 2012-11-12   v0.1.1   Switch to this.file api internally.
  * 2012-10-02   v0.1.0   Work in progress, not yet officially released.
 
 ---
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Tue Nov 13 2012 16:03:49.*
+*This file was generated on Mon Nov 19 2012 11:42:23.*
