@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 
     // The source files to be concatenated. The "nonull" option is used
     // to retain invalid files/patterns so they can be warned about.
-    var files = grunt.file.expand({nonull: true}, this.file.src);
+    var files = grunt.file.expand({nonull: true}, this.file.srcRaw);
 
     // Concat banner + specified files.
     var src = banner + files.map(function(filepath) {
