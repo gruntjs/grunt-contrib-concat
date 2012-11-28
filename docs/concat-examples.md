@@ -2,7 +2,7 @@
 
 ## Concatenating with a custom separator
 
-In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][] will concatenate the three specified source files (in order), joining files with `;` and writing the output to `dist/built.js`.
+In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][]) will concatenate the three specified source files (in order), joining files with `;` and writing the output to `dist/built.js`.
 
 ```js
 // Project configuration.
@@ -21,7 +21,7 @@ grunt.initConfig({
 
 ## Banner comments
 
-In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][]) will first strip any preexisting banner comment from the `src/project.js` file, then concatenate the result with a newly-generated banner comment, writing the output to `dist/built.js`.
+In this example, running `grunt concat:dist` will first strip any preexisting banner comment from the `src/project.js` file, then concatenate the result with a newly-generated banner comment, writing the output to `dist/built.js`.
 
 This generated banner will be the contents of the `banner` template string interpolated with the config object. In this case, those properties are the values imported from the `package.json` file (which are available via the `pkg` config property) plus today's date.
 
