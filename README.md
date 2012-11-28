@@ -18,10 +18,11 @@ npm install grunt-contrib-concat --save-dev
 ## Concat task
 _Run this task with the `grunt concat` command._
 
+_This task is a [multi task][] so any targets, files and options should be specified according to the [multi task][] documentation._
+[multi task]: https://github.com/gruntjs/grunt/wiki/Configuring-tasks
+
 
 ### Options
-_The following options are specified in the task configuration according to the [multi task options](https://github.com/gruntjs/grunt/blob/devel/docs/tasks.md) format._
-
 
 #### separator
 Type: `String`  
@@ -38,7 +39,7 @@ This string will be prepended to the beginning of the concatenated output. It is
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
 #### stripBanners
-Type: `Boolean`, `Object`  
+Type: `Boolean` `Object`  
 Default: `false`
 
 Strip JavaScript banner comments from source files.
@@ -51,7 +52,7 @@ Strip JavaScript banner comments from source files.
   * `line` - If true, any contiguous _leading_ `//` line comments are stripped.
 
 #### process
-Type: `Boolean`, `Object`  
+Type: `Boolean` `Object`  
 Default: `false`
 
 Process source files as [templates][] before concatenating.
@@ -202,9 +203,6 @@ grunt.initConfig({
 });
 ```
 
-  [multi task]: https://github.com/gruntjs/grunt/blob/devel/docs/types_of_tasks.md
-
-
 
 ## Release History
 
@@ -215,4 +213,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Mon Nov 19 2012 11:42:23.*
+*This file was generated on Wed Nov 28 2012 08:42:03.*

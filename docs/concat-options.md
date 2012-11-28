@@ -1,5 +1,4 @@
 # Options
-{%= s.multi_task_options %}
 
 ## separator
 Type: `String`  
@@ -16,7 +15,7 @@ This string will be prepended to the beginning of the concatenated output. It is
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
 ## stripBanners
-Type: `Boolean`, `Object`  
+Type: `Boolean` `Object`  
 Default: `false`
 
 Strip JavaScript banner comments from source files.
@@ -29,7 +28,7 @@ Strip JavaScript banner comments from source files.
   * `line` - If true, any contiguous _leading_ `//` line comments are stripped.
 
 ## process
-Type: `Boolean`, `Object`  
+Type: `Boolean` `Object`  
 Default: `false`
 
 Process source files as [templates][] before concatenating.

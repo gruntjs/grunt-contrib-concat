@@ -134,6 +134,3 @@ grunt.initConfig({
   }
 });
 ```
-
-  [multi task]: https://github.com/gruntjs/grunt/blob/devel/docs/types_of_tasks.md
-
