@@ -2,7 +2,7 @@
 
 > Concatenate files.
 
-_Note that this plugin has not yet been released, and only works with the latest bleeding-edge, in-development version of grunt. See the [When will I be able to use in-development feature 'X'?](https://github.com/gruntjs/grunt/blob/devel/docs/faq.md#when-will-i-be-able-to-use-in-development-feature-x) FAQ entry for more information._
+_Note that this plugin has not yet been released, and only works with the latest bleeding-edge, in-development version of grunt. See the [When will I be able to use in-development feature 'X'?](https://github.com/gruntjs/grunt/wiki/Frequently-Asked-Questions#when-will-i-be-able-to-use-in-development-feature-x) FAQ entry for more information._
 
 ## Getting Started
 If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
@@ -12,7 +12,7 @@ npm install grunt-contrib-concat --save-dev
 ```
 
 [grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+[Getting Started]: https://github.com/gruntjs/grunt/wiki/Getting-started
 
 
 ## Concat task
@@ -25,13 +25,13 @@ _This task is a [multi task][] so any targets, files and options should be speci
 ### Options
 
 #### separator
-Type: `String`  
+Type: `String`
 Default: linefeed
 
 Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you may need to use a semicolon `';'` as the separator.
 
 #### banner
-Type: `String`  
+Type: `String`
 Default: empty string
 
 This string will be prepended to the beginning of the concatenated output. It is processed using [grunt.template.process][], using the default options.
@@ -39,7 +39,7 @@ This string will be prepended to the beginning of the concatenated output. It is
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
 #### stripBanners
-Type: `Boolean` `Object`  
+Type: `Boolean` `Object`
 Default: `false`
 
 Strip JavaScript banner comments from source files.
@@ -52,7 +52,7 @@ Strip JavaScript banner comments from source files.
   * `line` - If true, any contiguous _leading_ `//` line comments are stripped.
 
 #### process
-Type: `Boolean` `Object`  
+Type: `Boolean` `Object`
 Default: `false`
 
 Process source files as [templates][] before concatenating.
@@ -63,8 +63,8 @@ Process source files as [templates][] before concatenating.
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
-  [templates]: https://github.com/gruntjs/grunt/blob/devel/docs/api_template.md
-  [grunt.template.process]: https://github.com/gruntjs/grunt/blob/devel/docs/api_template.md#grunttemplateprocess
+  [templates]: https://github.com/gruntjs/grunt/wiki/grunt.template
+  [grunt.template.process]: https://github.com/gruntjs/grunt/wiki/grunt.template#grunttemplateprocess
 
 ### Usage Examples
 
