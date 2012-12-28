@@ -2,7 +2,7 @@
 
 > Concatenate files.
 
-_Note that this plugin has not yet been released, and only works with the latest bleeding-edge, in-development version of grunt. See the [When will I be able to use in-development feature 'X'?](https://github.com/gruntjs/grunt/wiki/Frequently-Asked-Questions#when-will-i-be-able-to-use-in-development-feature-x) FAQ entry for more information._
+_Note that this plugin has not yet been released, and only works with the latest bleeding-edge, in-development version of grunt. See the [When will I be able to use in-development feature 'X'?](https://github.com/gruntjs/grunt/wiki/Frequently-Asked-Questions#faq-devel) FAQ entry for more information._
 
 ## Getting Started
 If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
@@ -64,7 +64,7 @@ Process source files as [templates][] before concatenating.
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
   [templates]: https://github.com/gruntjs/grunt/wiki/grunt.template
-  [grunt.template.process]: https://github.com/gruntjs/grunt/wiki/grunt.template#grunttemplateprocess
+  [grunt.template.process]: https://github.com/gruntjs/grunt/wiki/grunt.template#wiki-grunt-template-process
 
 ### Usage Examples
 
