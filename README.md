@@ -25,13 +25,13 @@ _This task is a [multi task][] so any targets, files and options should be speci
 ### Options
 
 #### separator
-Type: `String`  
+Type: `String`
 Default: linefeed
 
 Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you may need to use a semicolon `';'` as the separator.
 
 #### banner
-Type: `String`  
+Type: `String`
 Default: empty string
 
 This string will be prepended to the beginning of the concatenated output. It is processed using [grunt.template.process][], using the default options.
@@ -39,7 +39,7 @@ This string will be prepended to the beginning of the concatenated output. It is
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
 #### stripBanners
-Type: `Boolean` `Object`  
+Type: `Boolean` `Object`
 Default: `false`
 
 Strip JavaScript banner comments from source files.
@@ -52,7 +52,7 @@ Strip JavaScript banner comments from source files.
   * `line` - If true, any contiguous _leading_ `//` line comments are stripped.
 
 #### process
-Type: `Boolean` `Object`  
+Type: `Boolean` `Object`
 Default: `false`
 
 Process source files as [templates][] before concatenating.
@@ -63,8 +63,8 @@ Process source files as [templates][] before concatenating.
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
-  [templates]: https://github.com/gruntjs/grunt/blob/devel/docs/api_template.md
-  [grunt.template.process]: https://github.com/gruntjs/grunt/blob/devel/docs/api_template.md#grunttemplateprocess
+  [templates]: https://github.com/gruntjs/grunt/wiki/grunt.template
+  [grunt.template.process]: https://github.com/gruntjs/grunt/wiki/grunt.template#wiki-grunt-template-process
 
 ### Usage Examples
 
@@ -206,11 +206,11 @@ grunt.initConfig({
 
 ## Release History
 
- * 2012-11-12   v0.1.1   Switch to this.file api internally.
- * 2012-10-02   v0.1.0   Work in progress, not yet officially released.
+ * 2012-11-13   v0.1.1   Switch to this.file api internally.
+ * 2012-10-03   v0.1.0   Work in progress, not yet officially released.
 
 ---
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Wed Nov 28 2012 08:48:05.*
+*This file was generated on Sat Dec 29 2012 22:04:48.*
