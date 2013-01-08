@@ -1,1 +1,4 @@
-file1: file2
+/* THIS TEST IS AWESOME */
+file1
+;
+file2

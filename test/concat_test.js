@@ -18,11 +18,19 @@ exports.concat = {
 
     var actual = grunt.file.read('tmp/custom_options');
     var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
+    test.equal(actual, expected, 'should utilize custom banner and separator.');
 
     test.done();
   },
+  handling_invalid_files: function(test) {
+    test.expect(1);
 
+    var actual = grunt.file.read('tmp/handling_invalid_files');
+    var expected = grunt.file.read('test/expected/handling_invalid_files');
+    test.equal(actual, expected, 'will have warned, but should not fail.');
+
+    test.done();
+  },
   strip_banner: function(test) {
     test.expect(7);
 

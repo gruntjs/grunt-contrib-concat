@@ -29,6 +29,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
+    banner_property: 'AWESOME',
     concat: {
       default_options: {
         files: {
@@ -37,13 +38,18 @@ module.exports = function(grunt) {
       },
       custom_options: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!'
+          separator: '\n;\n',
+          banner: '/* THIS TEST IS <%= banner_property %> */\n',
         },
         files: {
           'tmp/custom_options': ['test/fixtures/file1', 'test/fixtures/file2']
         }
-      }
+      },
+      handling_invalid_files: {
+        src: ['test/fixtures/file1', 'invalid_file/should_warn/but_not_fail', 'test/fixtures/file2'],
+        dest: 'tmp/handling_invalid_files',
+        nonull: true,
+      },
     },
 
     // Unit tests.
