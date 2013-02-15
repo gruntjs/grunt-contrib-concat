@@ -1,3 +1,7 @@
+v0.1.2:
+  date: 2013-02-15
+  changes:
+    - First official release for Grunt 0.4.0.
 v0.1.2rc6:
   date: 2013-01-18
   changes:
