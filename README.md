@@ -42,6 +42,12 @@ This string will be prepended to the beginning of the concatenated output. It is
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
+#### wrapper
+Type: `Array`  
+Default: empty array
+
+The first element of this array will be prepended to every file and the second element will be appended to every file that is processed. Before that the content is processed using [grunt.template.process][].
+
 #### stripBanners
 Type: `Boolean` `Object`  
 Default: `false`
