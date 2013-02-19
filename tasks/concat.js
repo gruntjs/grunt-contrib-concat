@@ -19,7 +19,8 @@ module.exports = function(grunt) {
       separator: grunt.util.linefeed,
       banner: '',
       stripBanners: false,
-      process: false
+      process: false,
+      wrapper: []
     });
 
     // Normalize boolean options that accept options objects.
@@ -28,6 +29,11 @@ module.exports = function(grunt) {
 
     // Process banner.
     var banner = grunt.template.process(options.banner);
+
+    // Process wrapper
+    if (options.wrapper.length === 2) {
+      var wrapper = [grunt.template.process(options.wrapper[0]), grunt.template.process(options.wrapper[1])];
+    }
 
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
@@ -50,6 +56,10 @@ module.exports = function(grunt) {
         // Strip banners if requested.
         if (options.stripBanners) {
           src = comment.stripBanner(src, options.stripBanners);
+        }
+        // Add wrapper if defined
+        if (wrapper) {
+          src = wrapper[0] + src + wrapper[1];
         }
         return src;
       }).join(grunt.util.normalizelf(options.separator));
