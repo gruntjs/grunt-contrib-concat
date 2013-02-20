@@ -18,6 +18,7 @@ module.exports = function(grunt) {
     var options = this.options({
       separator: grunt.util.linefeed,
       banner: '',
+      footer: '',
       stripBanners: false,
       process: false
     });
@@ -26,12 +27,13 @@ module.exports = function(grunt) {
     if (options.stripBanners === true) { options.stripBanners = {}; }
     if (options.process === true) { options.process = {}; }
 
-    // Process banner.
+    // Process banner and footer.
     var banner = grunt.template.process(options.banner);
+    var footer = grunt.template.process(options.footer);
 
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
-      // Concat banner + specified files.
+      // Concat banner + specified files + footer.
       var src = banner + f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
@@ -52,7 +54,7 @@ module.exports = function(grunt) {
           src = comment.stripBanner(src, options.stripBanners);
         }
         return src;
-      }).join(grunt.util.normalizelf(options.separator));
+      }).join(grunt.util.normalizelf(options.separator)) + footer;
 
       // Write the destination file.
       grunt.file.write(f.dest, src);
