@@ -42,6 +42,14 @@ This string will be prepended to the beginning of the concatenated output. It is
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
+#### footer
+Type: `String`  
+Default: empty string
+
+This string will be appended to the end of the concatenated output. It is processed using [grunt.template.process][], using the default options.
+
+_(Default processing options are explained in the [grunt.template.process][] documentation)_
+
 #### stripBanners
 Type: `Boolean` `Object`  
 Default: `false`
@@ -112,6 +120,26 @@ grunt.initConfig({
     dist: {
       src: ['src/project.js'],
       dest: 'dist/built.js'
+    }
+  }
+});
+```
+
+#### Wrap the output
+
+In this example, we can concatenate our script files and the output will be wraped in an if-statement, writing the output to `dist/myApp.js`. This can be useful in case you don't want to process the script if it's allready loaded and initialized.
+
+```js
+// Project configuration.
+grunt.initConfig({
+  concat: {
+    options: {
+      banner: "if(typeof myApp === 'undefined'){",
+      footer: "}"
+    },
+    dist: {
+      src: ['src/myApp.js', 'src/myApp.UI.js', 'src/myApp.data.js'],
+      dest: 'dist/myApp.js'
     }
   }
 });
