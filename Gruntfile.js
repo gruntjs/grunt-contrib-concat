@@ -40,6 +40,7 @@ module.exports = function(grunt) {
         options: {
           separator: '\n;\n',
           banner: '/* THIS TEST IS <%= banner_property %> */\n',
+          footer: 'dude'
         },
         files: {
           'tmp/custom_options': ['test/fixtures/file1', 'test/fixtures/file2']

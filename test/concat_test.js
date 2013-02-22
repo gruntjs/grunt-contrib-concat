@@ -18,7 +18,7 @@ exports.concat = {
 
     var actual = grunt.file.read('tmp/custom_options');
     var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should utilize custom banner and separator.');
+    test.equal(actual, expected, 'should utilize custom banner, footer and separator.');
 
     test.done();
   },

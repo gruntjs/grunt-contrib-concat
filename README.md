@@ -29,21 +29,21 @@ Task targets, files and options may be specified according to the grunt [Configu
 ### Options
 
 #### separator
-Type: `String`  
+Type: `String`
 Default: linefeed
 
 Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you may need to use a semicolon `';'` as the separator.
 
 #### banner
-Type: `String`  
+Type: `String`
 Default: empty string
 
 This string will be prepended to the beginning of the concatenated output. It is processed using [grunt.template.process][], using the default options.
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
-#### footer
-Type: `String`  
+###### footer
+Type: `String`
 Default: empty string
 
 This string will be appended to the end of the concatenated output. It is processed using [grunt.template.process][], using the default options.
@@ -51,7 +51,7 @@ This string will be appended to the end of the concatenated output. It is proces
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
 #### stripBanners
-Type: `Boolean` `Object`  
+Type: `Boolean` `Object`
 Default: `false`
 
 Strip JavaScript banner comments from source files.
@@ -64,7 +64,7 @@ Strip JavaScript banner comments from source files.
   * `line` - If true, any contiguous _leading_ `//` line comments are stripped.
 
 #### process
-Type: `Boolean` `Object`  
+Type: `Boolean` `Object`
 Default: `false`
 
 Process source files as [templates][] before concatenating.
@@ -120,26 +120,6 @@ grunt.initConfig({
     dist: {
       src: ['src/project.js'],
       dest: 'dist/built.js'
-    }
-  }
-});
-```
-
-#### Wrap the output
-
-In this example, we can concatenate our script files and the output will be wraped in an if-statement, writing the output to `dist/myApp.js`. This can be useful in case you don't want to process the script if it's allready loaded and initialized.
-
-```js
-// Project configuration.
-grunt.initConfig({
-  concat: {
-    options: {
-      banner: "if(typeof myApp === 'undefined'){",
-      footer: "}"
-    },
-    dist: {
-      src: ['src/myApp.js', 'src/myApp.UI.js', 'src/myApp.data.js'],
-      dest: 'dist/myApp.js'
     }
   }
 });
@@ -238,6 +218,7 @@ grunt.initConfig({
 
 ## Release History
 
+ * 2013-02-21   v0.1.3   Support footer option.
  * 2013-02-14   v0.1.2   First official release for Grunt 0.4.0.
  * 2013-01-17   v0.1.2rc6   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
  * 2013-01-08   v0.1.2rc5   Updating to work with grunt v0.4.0rc5. Switching back to this.files api.
@@ -248,4 +229,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Wed Feb 20 2013 12:35:44.*
+*This file was generated on Fri Feb 22 2013 09:32:37.*

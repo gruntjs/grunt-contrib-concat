@@ -1,21 +1,29 @@
 # Options
 
 ## separator
-Type: `String`  
+Type: `String`
 Default: linefeed
 
 Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you may need to use a semicolon `';'` as the separator.
 
 ## banner
-Type: `String`  
+Type: `String`
 Default: empty string
 
 This string will be prepended to the beginning of the concatenated output. It is processed using [grunt.template.process][], using the default options.
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
+#### footer
+Type: `String`
+Default: empty string
+
+This string will be appended to the end of the concatenated output. It is processed using [grunt.template.process][], using the default options.
+
+_(Default processing options are explained in the [grunt.template.process][] documentation)_
+
 ## stripBanners
-Type: `Boolean` `Object`  
+Type: `Boolean` `Object`
 Default: `false`
 
 Strip JavaScript banner comments from source files.
@@ -28,7 +36,7 @@ Strip JavaScript banner comments from source files.
   * `line` - If true, any contiguous _leading_ `//` line comments are stripped.
 
 ## process
-Type: `Boolean` `Object`  
+Type: `Boolean` `Object`
 Default: `false`
 
 Process source files as [templates][] before concatenating.
