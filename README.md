@@ -75,8 +75,8 @@ Process source files as [templates][] before concatenating.
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
-  [templates]: https://github.com/gruntjs/grunt/blob/devel/docs/api_template.md
-  [grunt.template.process]: https://github.com/gruntjs/grunt/blob/devel/docs/api_template.md#grunttemplateprocess
+  [templates]: https://github.com/gruntjs/grunt/wiki/grunt.template
+  [grunt.template.process]: https://github.com/gruntjs/grunt/wiki/grunt.template#wiki-grunt-template-process
 
 ### Usage Examples
 
@@ -229,4 +229,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Fri Feb 22 2013 09:32:37.*
+*This file was generated on Fri Feb 22 2013 09:34:22.*

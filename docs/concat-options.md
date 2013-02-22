@@ -47,5 +47,5 @@ Process source files as [templates][] before concatenating.
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
-  [templates]: https://github.com/gruntjs/grunt/blob/devel/docs/api_template.md
-  [grunt.template.process]: https://github.com/gruntjs/grunt/blob/devel/docs/api_template.md#grunttemplateprocess
+  [templates]: https://github.com/gruntjs/grunt/wiki/grunt.template
+  [grunt.template.process]: https://github.com/gruntjs/grunt/wiki/grunt.template#wiki-grunt-template-process
