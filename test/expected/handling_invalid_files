@@ -1,2 +1,3 @@
 file1
+invalid_file/should_warn/but_not_fail
 file2
