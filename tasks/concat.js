@@ -28,8 +28,9 @@ module.exports = function(grunt) {
     if (options.process === true) { options.process = {}; }
 
     // Process banner and footer.
-    var banner = grunt.template.process(options.banner);
-    var footer = grunt.template.process(options.footer);
+    var templateLocals = options.process && options.process.data;
+    var banner = grunt.template.process(options.banner, templateLocals);
+    var footer = grunt.template.process(options.footer, templateLocals);
 
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
@@ -63,5 +64,4 @@ module.exports = function(grunt) {
       grunt.log.writeln('File "' + f.dest + '" created.');
     });
   });
-
 };
