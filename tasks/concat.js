@@ -24,8 +24,8 @@ module.exports = function(grunt) {
     });
 
     // Normalize boolean options that accept options objects.
-    if (options.stripBanners === true) { options.stripBanners = {}; }
-    if (options.process === true) { options.process = {}; }
+    if (typeof options.stripBanners === 'boolean' && options.stripBanners === true) { options.stripBanners = {}; }
+    if (typeof options.process === 'boolean' && options.process === true) { options.process = {}; }
 
     // Process banner and footer.
     var banner = grunt.template.process(options.banner);
