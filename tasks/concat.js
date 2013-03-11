@@ -33,18 +33,10 @@ module.exports = function(grunt) {
 
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
-      // Concat banner + specified files + footer.
-      var src = banner + f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        var src = grunt.file.read(filepath);
+      // Concat banner + specified files/strings + footer.
+      var src = banner + f.orig.src.map(function(filepath) {
+        // Read file source, or use as a string if file doesn't exist.
+        var src = grunt.file.exists(filepath) ? grunt.file.read(filepath) : filepath;
         // Process files as templates if requested.
         if (options.process) {
           src = grunt.template.process(src, options.process);
