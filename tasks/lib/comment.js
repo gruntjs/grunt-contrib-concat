@@ -11,7 +11,7 @@
 exports.init = function(/*grunt*/) {
   var exports = {};
 
-  // Return the given source cude with any leading banner comment stripped.
+  // Return the given source code with any leading banner comment stripped.
   exports.stripBanner = function(src, options) {
     if (!options) { options = {}; }
     var m = [];
