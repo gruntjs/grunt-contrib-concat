@@ -42,7 +42,7 @@ This string will be prepended to the beginning of the concatenated output. It is
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
-###### footer
+#### footer
 Type: `String`
 Default: empty string
 
