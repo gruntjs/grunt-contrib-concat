@@ -60,6 +60,9 @@ module.exports = function(grunt) {
 
   });
 
+  // Force UNIX style line endings in Windows environments
+  grunt.util.linefeed = '\n';
+
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
 
