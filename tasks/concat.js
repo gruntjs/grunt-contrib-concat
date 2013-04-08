@@ -54,7 +54,7 @@ module.exports = function(grunt) {
           src = comment.stripBanner(src, options.stripBanners);
         }
         return src;
-      }).join(grunt.util.normalizelf(options.separator)) + footer;
+      }).join(options.separator) + footer;
 
       // Write the destination file.
       grunt.file.write(f.dest, src);

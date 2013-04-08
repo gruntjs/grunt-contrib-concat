@@ -30,7 +30,7 @@ Task targets, files and options may be specified according to the grunt [Configu
 
 #### separator
 Type: `String`
-Default: linefeed
+Default: `grunt.util.linefeed`
 
 Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you may need to use a semicolon `';'` as the separator.
 
@@ -218,6 +218,7 @@ grunt.initConfig({
 
 ## Release History
 
+ * 2013-04-07   v0.2.0   Dont normalize separator to allow user to set LF even on a Windows environment.
  * 2013-02-21   v0.1.3   Support footer option.
  * 2013-02-14   v0.1.2   First official release for Grunt 0.4.0.
  * 2013-01-17   v0.1.2rc6   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
@@ -229,4 +230,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Fri Feb 22 2013 09:34:22.*
+*This file was generated on Mon Apr 08 2013 09:20:19.*
