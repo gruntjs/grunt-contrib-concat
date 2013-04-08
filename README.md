@@ -215,6 +215,23 @@ grunt.initConfig({
 });
 ```
 
+#### Invalid or Missing Files Warning
+If you would like the `concat` task to warn if a given file is missing or invalid be sure to set `nonull` to `true`:
+
+```js
+grunt.initConfig({
+  concat: {
+    missing: {
+      src: ['src/invalid_or_missing_file'],
+      dest: 'compiled.js',
+      nonull: true,
+    },
+  },
+});
+```
+
+See [configuring files for a task](http://gruntjs.com/configuring-tasks#files) for how to configure file globbing in Grunt.
+
 
 ## Release History
 
@@ -230,4 +247,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Mon Apr 08 2013 09:20:19.*
+*This file was generated on Mon Apr 08 2013 10:12:23.*
