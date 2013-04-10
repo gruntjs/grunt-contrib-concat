@@ -150,6 +150,20 @@ grunt.initConfig({
 });
 ```
 
+If you would like the Grunt task to fail rather than warn then set option `failOnMissing` to `true` in addition to `nonull` to `true`:
+```js
+grunt.initConfig({
+  concat: {
+    config: { failOnMissing: true }
+    missing: {
+      src: ['src/invalid_or_missing_file'],
+      dest: 'compiled.js',
+      nonull: true,
+    },
+  },
+});
+```
+
 See [configuring files for a task](http://gruntjs.com/configuring-tasks#files) for how to configure file globbing in Grunt.
 
 

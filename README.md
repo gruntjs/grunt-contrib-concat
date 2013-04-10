@@ -75,6 +75,15 @@ Process source files before concatenating, either as [templates][] or with a cus
 * `data` object - Process source files using [grunt.template.process][], using the specified options.
 * `function(src, filepath)` - Process source files using the given function, called once for each file. The returned value will be used as source code.
 
+#### failOnMissing
+Type: `Boolean`
+Default: `false`
+
+Enforce grunt fail (exit with value of 3) on missing src files when `nonull` config is set to `true`.
+
+* `false` - Ignore or warn on missing file (depending on `nonull` config).
+* `true` - Ignore or fail on missing file (depending on `nonull` config).
+
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
   [templates]: https://github.com/gruntjs/grunt-docs/blob/master/grunt.template.md
@@ -223,6 +232,20 @@ If you would like the `concat` task to warn if a given file is missing or invali
 ```js
 grunt.initConfig({
   concat: {
+    missing: {
+      src: ['src/invalid_or_missing_file'],
+      dest: 'compiled.js',
+      nonull: true,
+    },
+  },
+});
+```
+
+If you would like the Grunt task to fail rather than warn then set option `failOnMissing` to `true` in addition to `nonull` to `true`:
+```js
+grunt.initConfig({
+  concat: {
+    config: { failOnMissing: true }
     missing: {
       src: ['src/invalid_or_missing_file'],
       dest: 'compiled.js',

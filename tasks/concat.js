@@ -21,7 +21,8 @@ module.exports = function(grunt) {
       banner: '',
       footer: '',
       stripBanners: false,
-      process: false
+      process: false,
+      failOnMissing: false
     });
 
     // Normalize boolean options that accept options objects.
@@ -38,7 +39,11 @@ module.exports = function(grunt) {
       var src = banner + f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
+          if (options.failOnMissing) {
+            grunt.warn('Source file "' + filepath + '" not found.', 6);
+          } else {
+            grunt.log.warn('Source file "' + filepath + '" not found.');
+          }
           return false;
         } else {
           return true;
