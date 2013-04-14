@@ -51,6 +51,17 @@ module.exports = function(grunt) {
         dest: 'tmp/handling_invalid_files',
         nonull: true,
       },
+      process_function: {
+        options: {
+          process: function(src, filepath) {
+            return '// Source: ' + filepath + '\n' +
+              src.replace(/file(\d)/, 'f$1');
+          }
+        },
+        files: {
+          'tmp/process_function': ['test/fixtures/file1', 'test/fixtures/file2']
+        }
+      },
     },
 
     // Unit tests.

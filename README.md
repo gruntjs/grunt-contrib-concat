@@ -72,6 +72,7 @@ Process source files as [templates][] before concatenating.
 * `false` - No processing will occur.
 * `true` - Process source files using [grunt.template.process][] defaults.
 * `options` object - Process source files using [grunt.template.process][], using the specified options.
+* `function(src, filepath)` - Process source files using the given function, called once for each file. The returned value will be used as source code.
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
@@ -233,18 +234,41 @@ grunt.initConfig({
 See [configuring files for a task](http://gruntjs.com/configuring-tasks#files) for how to configure file globbing in Grunt.
 
 
+#### Custom process function
+If you would like to do any custom processing before concatenating, use a custom process function:
+
+```js
+runt.initConfig({
+  concat: {
+    dist: {
+      options: {
+        // Replace all 'use strict' statements in the code with a single one at the top
+        banner: "'use strict';\n",
+        process: function(src, filepath) {
+          return '// Source: ' + filepath + '\n' +
+            src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
+        },
+      },
+      files: {
+        'dist/built.js': ['src/project.js'],
+      },
+    },
+  },
+});
+```
+
 ## Release History
 
- * 2013-04-07   v0.2.0   Dont normalize separator to allow user to set LF even on a Windows environment.
- * 2013-02-21   v0.1.3   Support footer option.
- * 2013-02-14   v0.1.2   First official release for Grunt 0.4.0.
- * 2013-01-17   v0.1.2rc6   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
- * 2013-01-08   v0.1.2rc5   Updating to work with grunt v0.4.0rc5. Switching back to this.files api.
- * 2012-11-12   v0.1.1   Switch to this.file api internally.
- * 2012-10-02   v0.1.0   Work in progress, not yet officially released.
+ * 2013-04-08   v0.2.0   Dont normalize separator to allow user to set LF even on a Windows environment.
+ * 2013-02-22   v0.1.3   Support footer option.
+ * 2013-02-15   v0.1.2   First official release for Grunt 0.4.0.
+ * 2013-01-18   v0.1.2rc6   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
+ * 2013-01-09   v0.1.2rc5   Updating to work with grunt v0.4.0rc5. Switching back to this.files api.
+ * 2012-11-13   v0.1.1   Switch to this.file api internally.
+ * 2012-10-03   v0.1.0   Work in progress, not yet officially released.
 
 ---
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Mon Apr 08 2013 10:12:23.*
+*This file was generated on Sun Apr 14 2013 16:21:52.*

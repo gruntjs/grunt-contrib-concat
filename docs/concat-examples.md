@@ -151,3 +151,27 @@ grunt.initConfig({
 ```
 
 See [configuring files for a task](http://gruntjs.com/configuring-tasks#files) for how to configure file globbing in Grunt.
+
+
+## Custom process function
+If you would like to do any custom processing before concatenating, use a custom process function:
+
+```js
+runt.initConfig({
+  concat: {
+    dist: {
+      options: {
+        // Replace all 'use strict' statements in the code with a single one at the top
+        banner: "'use strict';\n",
+        process: function(src, filepath) {
+          return '// Source: ' + filepath + '\n' +
+            src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
+        },
+      },
+      files: {
+        'dist/built.js': ['src/project.js'],
+      },
+    },
+  },
+});
+```
