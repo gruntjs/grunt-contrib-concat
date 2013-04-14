@@ -46,7 +46,9 @@ module.exports = function(grunt) {
         // Read file source.
         var src = grunt.file.read(filepath);
         // Process files as templates if requested.
-        if (options.process) {
+        if (typeof options.process === 'function') {
+          src = options.process(src, filepath);
+        } else if (options.process) {
           src = grunt.template.process(src, options.process);
         }
         // Strip banners if requested.
