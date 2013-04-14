@@ -51,5 +51,14 @@ exports.concat = {
     test.equal(comment.stripBanner(src, {block: true}), grunt.util.normalizelf('\n// This is\n// A sample\n// Banner\n\n// But this is not\n\n/* And neither\n * is this\n */\n'), 'It should not strip the top banner.');
     test.equal(comment.stripBanner(src, {line: true}), grunt.util.normalizelf('// But this is not\n\n/* And neither\n * is this\n */\n'), 'It should strip the top banner.');
     test.done();
+  },
+  process_function: function(test) {
+    test.expect(1);
+
+    var actual = getNormalizedFile('tmp/process_function');
+    var expected = getNormalizedFile('test/expected/process_function');
+    test.equal(actual, expected, 'should have processed file content.');
+
+    test.done();
   }
 };
