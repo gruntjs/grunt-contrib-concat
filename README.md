@@ -259,6 +259,7 @@ runt.initConfig({
 
 ## Release History
 
+ * 2013-04-25   v0.3.0   Add option to process files with a custom function.
  * 2013-04-08   v0.2.0   Dont normalize separator to allow user to set LF even on a Windows environment.
  * 2013-02-22   v0.1.3   Support footer option.
  * 2013-02-15   v0.1.2   First official release for Grunt 0.4.0.
@@ -271,4 +272,4 @@ runt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Sun Apr 14 2013 16:21:52.*
+*This file was generated on Thu Apr 25 2013 20:22:44.*

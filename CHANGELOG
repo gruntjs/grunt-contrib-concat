@@ -1,3 +1,7 @@
+v0.3.0:
+  date: 2013-04-25
+  changes:
+    - Add option to process files with a custom function.
 v0.2.0:
   date: 2013-04-08
   changes:
