@@ -36,10 +36,10 @@ Strip JavaScript banner comments from source files.
   * `line` - If true, any contiguous _leading_ `//` line comments are stripped.
 
 ## process
-Type: `Boolean` `Object`
+Type: `Boolean` `Object` `Function`
 Default: `false`
 
-Process source files as [templates][] before concatenating.
+Process source files before concatenating, either as [templates][] or with a custom function.
 
 * `false` - No processing will occur.
 * `true` - Process source files using [grunt.template.process][] defaults.
@@ -49,4 +49,4 @@ Process source files as [templates][] before concatenating.
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
   [templates]: https://github.com/gruntjs/grunt/wiki/grunt.template
-  [grunt.template.process]: https://github.com/gruntjs/grunt/wiki/grunt.template#wiki-grunt-template-process
+  [grunt.template.process]: https://github.com/gruntjs/grunt/wiki/grunt.template#grunttemplateprocess
