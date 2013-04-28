@@ -9,13 +9,13 @@ In this example, running `grunt concat:dist` (or `grunt concat` because `concat`
 grunt.initConfig({
   concat: {
     options: {
-      separator: ';'
+      separator: ';',
     },
     dist: {
       src: ['src/intro.js', 'src/project.js', 'src/outro.js'],
-      dest: 'dist/built.js'
-    }
-  }
+      dest: 'dist/built.js',
+    },
+  },
 });
 ```
 
@@ -35,13 +35,13 @@ grunt.initConfig({
     options: {
       stripBanners: true,
       banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-        '<%= grunt.template.today("yyyy-mm-dd") %> */'
+        '<%= grunt.template.today("yyyy-mm-dd") %> */',
     },
     dist: {
       src: ['src/project.js'],
-      dest: 'dist/built.js'
-    }
-  }
+      dest: 'dist/built.js',
+    },
+  },
 });
 ```
 
@@ -57,13 +57,13 @@ grunt.initConfig({
   concat: {
     basic: {
       src: ['src/main.js'],
-      dest: 'dist/basic.js'
+      dest: 'dist/basic.js',
     },
     extras: {
       src: ['src/main.js', 'src/extras.js'],
-      dest: 'dist/with_extras.js'
-    }
-  }
+      dest: 'dist/with_extras.js',
+    },
+  },
 });
 ```
 
@@ -82,10 +82,10 @@ grunt.initConfig({
     basic_and_extras: {
       files: {
         'dist/basic.js': ['src/main.js'],
-        'dist/with_extras.js': ['src/main.js', 'src/extras.js']
-      }
-    }
-  }
+        'dist/with_extras.js': ['src/main.js', 'src/extras.js'],
+      },
+    },
+  },
 });
 ```
 
@@ -102,9 +102,9 @@ grunt.initConfig({
   concat: {
     dist: {
       src: ['src/main.js'],
-      dest: 'dist/<%= pkg.name %>-<%= pkg.version %>.js'
-    }
-  }
+      dest: 'dist/<%= pkg.name %>-<%= pkg.version %>.js',
+    },
+  },
 });
 ```
 
@@ -114,24 +114,24 @@ In this more involved example, running `grunt concat` will build two separate fi
 
 For example, if the `package.json` file contained `{"name": "awesome", "version": "1.0.0"}`, the files `dist/awesome/1.0.0/basic.js` and `dist/awesome/1.0.0/with_extras.js` would be generated.
 
-```javascript
+```js
 // Project configuration.
 grunt.initConfig({
   pkg: grunt.file.readJSON('package.json'),
   dirs: {
     src: 'src/files',
-    dest: 'dist/<%= pkg.name %>/<%= pkg.version %>'
+    dest: 'dist/<%= pkg.name %>/<%= pkg.version %>',
   },
   concat: {
     basic: {
       src: ['<%= dirs.src %>/main.js'],
-      dest: '<%= dirs.dest %>/basic.js'
+      dest: '<%= dirs.dest %>/basic.js',
     },
     extras: {
       src: ['<%= dirs.src %>/main.js', '<%= dirs.src %>/extras.js'],
-      dest: '<%= dirs.dest %>/with_extras.js'
-    }
-  }
+      dest: '<%= dirs.dest %>/with_extras.js',
+    },
+  },
 });
 ```
 
@@ -157,7 +157,7 @@ See [configuring files for a task](http://gruntjs.com/configuring-tasks#files) f
 If you would like to do any custom processing before concatenating, use a custom process function:
 
 ```js
-runt.initConfig({
+grunt.initConfig({
   concat: {
     dist: {
       options: {
