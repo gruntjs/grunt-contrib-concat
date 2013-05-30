@@ -11,7 +11,8 @@
 module.exports = function(grunt) {
 
   // Internal lib.
-  var comment = require('./lib/comment').init(grunt);
+  var comment = require('./lib/comment').init(grunt),
+      path = require('path');
 
   grunt.registerMultiTask('concat', 'Concatenate files.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
@@ -20,26 +21,28 @@ module.exports = function(grunt) {
       banner: '',
       footer: '',
       stripBanners: false,
-      process: false
+      process: false,
+      includes: false
     });
 
     // Normalize boolean options that accept options objects.
     if (options.stripBanners === true) { options.stripBanners = {}; }
     if (options.process === true) { options.process = {}; }
 
-    // Process banner and footer.
-    var banner = grunt.template.process(options.banner);
+    // Process footer.
     var footer = grunt.template.process(options.footer);
 
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
       // Concat banner + specified files + footer.
-      var src = banner + f.src.filter(function(filepath) {
+      var includes = [],
+      src = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
           return false;
         } else {
+          includes.push(path.basename(filepath));
           return true;
         }
       }).map(function(filepath) {
@@ -56,10 +59,12 @@ module.exports = function(grunt) {
           src = comment.stripBanner(src, options.stripBanners);
         }
         return src;
-      }).join(options.separator) + footer;
+      }).join(options.separator);
+
+      var banner = options.banner;
 
       // Write the destination file.
-      grunt.file.write(f.dest, src);
+      grunt.file.write(f.dest, (options.includes ? '/**\n * @includes '+includes.join('\n * @includes ')+ '\n */\n' : '') + banner + src + footer);
 
       // Print a success message.
       grunt.log.writeln('File "' + f.dest + '" created.');

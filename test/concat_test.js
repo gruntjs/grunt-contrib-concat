@@ -60,5 +60,14 @@ exports.concat = {
     test.equal(actual, expected, 'should have processed file content.');
 
     test.done();
+  },
+  includes_banner: function(test) {
+    test.expect(1);
+
+    var actual = getNormalizedFile('tmp/includes_banner');
+    var expected = getNormalizedFile('test/expected/includes_banner');
+    test.equal(actual, expected, 'should include scripts file name.');
+
+    test.done();
   }
 };
