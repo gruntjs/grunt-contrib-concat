@@ -1,0 +1,7 @@
+/* THIS TEST IS AWESOME */
+/*!
+ * @includes file1
+ * @includes file2
+ */
+file1
+file2

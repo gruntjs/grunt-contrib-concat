@@ -79,6 +79,12 @@ _(Default processing options are explained in the [grunt.template.process][] doc
   [templates]: https://github.com/gruntjs/grunt/wiki/grunt.template
   [grunt.template.process]: https://github.com/gruntjs/grunt/wiki/grunt.template#wiki-grunt-template-process
 
+#### includes
+Type: `Boolean`
+Default: `false`
+
+Prepend includes file name banner
+
 ### Usage Examples
 
 #### Concatenating with a custom separator
@@ -272,4 +278,4 @@ runt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Thu Apr 25 2013 20:22:44.*
+*This file was generated on Fri May 31 2013 00:54:38.*

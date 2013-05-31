@@ -62,6 +62,15 @@ module.exports = function(grunt) {
           'tmp/process_function': ['test/fixtures/file1', 'test/fixtures/file2']
         }
       },
+      includes_banner: {
+        options: {
+          banner: '/* THIS TEST IS <%= banner_property %> */\n',
+          includes: true
+        },
+        files: {
+          'tmp/includes_banner': ['test/fixtures/file1', 'test/fixtures/file2']
+        }
+      }
     },
 
     // Unit tests.
