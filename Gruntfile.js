@@ -64,6 +64,7 @@ module.exports = function(grunt) {
       },
       includes_banner: {
         options: {
+          banner: '/* THIS TEST IS <%= banner_property %> */\n',
           includes: true
         },
         files: {

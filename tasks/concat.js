@@ -64,7 +64,10 @@ module.exports = function(grunt) {
       var banner = options.banner;
 
       // Write the destination file.
-      grunt.file.write(f.dest, (options.includes ? '/**\n * @includes '+includes.join('\n * @includes ')+ '\n */\n' : '') + banner + src + footer);
+      grunt.file.write(f.dest, banner +
+                               (options.includes ? '/*!\n * @includes '+includes.join('\n * @includes ')+ '\n */\n' : '') +
+                               src +
+                               footer);
 
       // Print a success message.
       grunt.log.writeln('File "' + f.dest + '" created.');
