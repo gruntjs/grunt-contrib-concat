@@ -29,7 +29,8 @@ module.exports = function(grunt) {
     if (options.stripBanners === true) { options.stripBanners = {}; }
     if (options.process === true) { options.process = {}; }
 
-    // Process footer.
+    // Process banner and footer.    
+    var banner = grunt.template.process(options.banner);
     var footer = grunt.template.process(options.footer);
 
     // Iterate over all src-dest file pairs.
@@ -60,8 +61,6 @@ module.exports = function(grunt) {
         }
         return src;
       }).join(options.separator);
-
-      var banner = options.banner;
 
       // Write the destination file.
       grunt.file.write(f.dest, banner +

@@ -1,4 +1,4 @@
-# grunt-contrib-concat [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat)
+# grunt-contrib-concat [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat)
 
 > Concatenate files.
 
