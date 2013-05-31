@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     if (options.stripBanners === true) { options.stripBanners = {}; }
     if (options.process === true) { options.process = {}; }
 
-    // Process banner and footer.    
+    // Process banner and footer.
     var banner = grunt.template.process(options.banner);
     var footer = grunt.template.process(options.footer);
 

@@ -1,4 +1,4 @@
-# grunt-contrib-concat [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat)
+# grunt-contrib-concat [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-concat)
 
 > Concatenate files.
 
@@ -78,6 +78,12 @@ _(Default processing options are explained in the [grunt.template.process][] doc
 
   [templates]: https://github.com/gruntjs/grunt/wiki/grunt.template
   [grunt.template.process]: https://github.com/gruntjs/grunt/wiki/grunt.template#wiki-grunt-template-process
+
+#### includes
+Type: `Boolean`
+Default: `false`
+
+Prepend includes file name banner
 
 ### Usage Examples
 
