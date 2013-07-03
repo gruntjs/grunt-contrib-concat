@@ -2,7 +2,7 @@
 
 ## Concatenating with a custom separator
 
-In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][]) will concatenate the three specified source files (in order), joining files with `;` and writing the output to `dist/built.js`.
+In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][https://github.com/gruntjs/grunt/wiki/Creating-tasks#multi-tasks]) will concatenate the three specified source files (in order), joining files with `;` and writing the output to `dist/built.js`.
 
 ```js
 // Project configuration.
