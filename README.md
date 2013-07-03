@@ -83,7 +83,7 @@ _(Default processing options are explained in the [grunt.template.process][] doc
 
 #### Concatenating with a custom separator
 
-In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][]) will concatenate the three specified source files (in order), joining files with `;` and writing the output to `dist/built.js`.
+In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][https://github.com/gruntjs/grunt/wiki/Creating-tasks#multi-tasks]) will concatenate the three specified source files (in order), joining files with `;` and writing the output to `dist/built.js`.
 
 ```js
 // Project configuration.
@@ -257,6 +257,7 @@ runt.initConfig({
 });
 ```
 
+
 ## Release History
 
  * 2013-04-25   v0.3.0   Add option to process files with a custom function.
@@ -272,4 +273,4 @@ runt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Thu Apr 25 2013 20:22:44.*
+*This file was generated on Wed Jul 03 2013 14:34:54.*
