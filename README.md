@@ -50,6 +50,12 @@ This string will be appended to the end of the concatenated output. It is proces
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
+#### indent
+Type: `String`
+Default: empty string
+
+This string will be used to indent each line in the concatenated files. This is useful for wrapping the files in a closure using the banner and footer. If an empty string or false value is passed, no processing will take place.
+
 #### stripBanners
 Type: `Boolean` `Object`
 Default: `false`
@@ -259,7 +265,8 @@ runt.initConfig({
 
 
 ## Release History
-
+ 
+ * 2013-07-09   v0.4.0   Add option to indent concatenated files, useful for wrapping files in a closure.
  * 2013-04-25   v0.3.0   Add option to process files with a custom function.
  * 2013-04-08   v0.2.0   Dont normalize separator to allow user to set LF even on a Windows environment.
  * 2013-02-22   v0.1.3   Support footer option.
@@ -273,4 +280,4 @@ runt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Wed Jul 10 2013 01:06:19.*
+*This file was generated on Wed Jul 10 2013 00:10:04.*
