@@ -1,4 +1,4 @@
-# grunt-contrib-concat [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-concat)
+# grunt-contrib-concat [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat)
 
 > Concatenate files.
 
@@ -258,6 +258,7 @@ grunt.initConfig({
 });
 ```
 
+
 ## Release History
 
  * 2013-04-25   v0.3.0   Add option to process files with a custom function.
@@ -273,4 +274,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Wed Jul 03 2013 14:34:54.*
+*This file was generated on Wed Jul 10 2013 14:40:37.*
