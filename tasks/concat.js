@@ -19,6 +19,7 @@ module.exports = function(grunt) {
       separator: grunt.util.linefeed,
       banner: '',
       footer: '',
+      indent: '',
       stripBanners: false,
       process: false
     });
@@ -54,6 +55,13 @@ module.exports = function(grunt) {
         // Strip banners if requested.
         if (options.stripBanners) {
           src = comment.stripBanner(src, options.stripBanners);
+        }
+        // Indent files if requested.
+        if (options.indent) {
+          src = grunt.util.normalizelf(src);
+          src = src.split(grunt.util.linefeed).map(function (line) {
+            return options.indent + line;
+          }).join(grunt.util.linefeed);
         }
         return src;
       }).join(options.separator) + footer;
