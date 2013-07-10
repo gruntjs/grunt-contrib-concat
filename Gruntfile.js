@@ -62,6 +62,16 @@ module.exports = function(grunt) {
           'tmp/process_function': ['test/fixtures/file1', 'test/fixtures/file2']
         }
       },
+      indent_and_wrap: {
+        options: {
+          banner: '(function () {' + grunt.util.linefeed,
+          footer: grunt.util.linefeed + '})();' + grunt.util.linefeed,
+          indent: '  '
+        },
+        files: {
+          'tmp/indent_and_wrap': ['test/fixtures/file1', 'test/fixtures/file2'],
+        }
+      }
     },
 
     // Unit tests.

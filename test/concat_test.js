@@ -60,5 +60,14 @@ exports.concat = {
     test.equal(actual, expected, 'should have processed file content.');
 
     test.done();
+  },
+  indent_and_wrap: function (test) {
+    test.expect(1);
+
+    var actual = getNormalizedFile('tmp/indent_and_wrap');
+    var expected = getNormalizedFile('test/expected/indent_and_wrap');
+    test.equal(actual, expected, 'should allow indentation of files.');
+
+    test.done();
   }
 };
