@@ -258,7 +258,7 @@ grunt.initConfig({
 });
 ```
 
-[multitask]: https://github.com/gruntjs/grunt/wiki/Creating-tasks#multi-tasks
+[multitask]: http://gruntjs.com/creating-tasks#multi-tasks
 
 
 ## Release History
@@ -276,4 +276,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Thu Jul 18 2013 11:15:26.*
+*This file was generated on Thu Jul 18 2013 11:16:52.*

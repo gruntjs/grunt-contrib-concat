@@ -176,4 +176,4 @@ grunt.initConfig({
 });
 ```
 
-[multitask]: https://github.com/gruntjs/grunt/wiki/Creating-tasks#multi-tasks
+[multitask]: http://gruntjs.com/creating-tasks#multi-tasks
