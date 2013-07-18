@@ -84,7 +84,7 @@ _(Default processing options are explained in the [grunt.template.process][] doc
 
 #### Concatenating with a custom separator
 
-In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][https://github.com/gruntjs/grunt/wiki/Creating-tasks#multi-tasks]) will concatenate the three specified source files (in order), joining files with `;` and writing the output to `dist/built.js`.
+In this example, running `grunt concat:dist` (or `grunt concat` because `concat` is a [multi task][multitask]) will concatenate the three specified source files (in order), joining files with `;` and writing the output to `dist/built.js`.
 
 ```js
 // Project configuration.
@@ -131,7 +131,7 @@ grunt.initConfig({
 
 In this example, running `grunt concat` will build two separate files. One "basic" version, with the main file essentially just copied to `dist/basic.js`, and another "with_extras" concatenated version written to `dist/with_extras.js`.
 
-While each concat target can be built individually by running `grunt concat:basic` or `grunt concat:extras`, running `grunt concat` will build all concat targets. This is because `concat` is a [multi task][].
+While each concat target can be built individually by running `grunt concat:basic` or `grunt concat:extras`, running `grunt concat` will build all concat targets. This is because `concat` is a [multi task][multitask].
 
 ```js
 // Project configuration.
@@ -192,7 +192,7 @@ grunt.initConfig({
 
 #### Advanced dynamic filenames
 
-In this more involved example, running `grunt concat` will build two separate files (because `concat` is a [multi task][]). The destination file paths will be expanded dynamically based on the specified templates, recursively if necessary.
+In this more involved example, running `grunt concat` will build two separate files (because `concat` is a [multi task][multitask]). The destination file paths will be expanded dynamically based on the specified templates, recursively if necessary.
 
 For example, if the `package.json` file contained `{"name": "awesome", "version": "1.0.0"}`, the files `dist/awesome/1.0.0/basic.js` and `dist/awesome/1.0.0/with_extras.js` would be generated.
 
@@ -258,6 +258,8 @@ grunt.initConfig({
 });
 ```
 
+[multitask]: https://github.com/gruntjs/grunt/wiki/Creating-tasks#multi-tasks
+
 
 ## Release History
 
@@ -274,4 +276,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Wed Jul 10 2013 14:40:37.*
+*This file was generated on Thu Jul 18 2013 11:15:26.*
