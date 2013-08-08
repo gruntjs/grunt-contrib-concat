@@ -251,7 +251,7 @@ grunt.initConfig({
         }
       },
       files: {
-        'dist/built.js': ['src/project.js'],
+        'dist/built.js': ['src/project.js']
       }
     }
   }
