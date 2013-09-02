@@ -8,6 +8,8 @@
 
 'use strict';
 
+var path = require('path');
+
 module.exports = function(grunt) {
 
   // Internal lib.
@@ -33,9 +35,15 @@ module.exports = function(grunt) {
 
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
+
+      var realpath = function(filepath) {
+        return f.cwd ? path.join(f.cwd, filepath) : filepath
+      };
+
       // Concat banner + specified files + footer.
       var src = banner + f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
+        filepath = realpath(filepath);
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
           return false;
@@ -43,6 +51,7 @@ module.exports = function(grunt) {
           return true;
         }
       }).map(function(filepath) {
+        filepath = realpath(filepath);
         // Read file source.
         var src = grunt.file.read(filepath);
         // Process files as templates if requested.
@@ -59,10 +68,11 @@ module.exports = function(grunt) {
       }).join(options.separator) + footer;
 
       // Write the destination file.
-      grunt.file.write(f.dest, src);
+      var dest = realpath(f.dest);
+      grunt.file.write(dest, src);
 
       // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
+      grunt.log.writeln('File "' + dest + '" created.');
     });
   });
 
