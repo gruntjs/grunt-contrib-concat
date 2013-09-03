@@ -43,7 +43,7 @@ Process source files before concatenating, either as [templates][] or with a cus
 
 * `false` - No processing will occur.
 * `true` - Process source files using [grunt.template.process][] defaults.
-* `options` object - Process source files using [grunt.template.process][], using the specified options.
+* `data` object - Process source files using [grunt.template.process][], using the specified options.
 * `function(src, filepath)` - Process source files using the given function, called once for each file. The returned value will be used as source code.
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
