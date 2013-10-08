@@ -20,7 +20,8 @@ module.exports = function(grunt) {
       banner: '',
       footer: '',
       stripBanners: false,
-      process: false
+      process: false,
+      encoding: grunt.file.defaultEncoding
     });
 
     // Normalize boolean options that accept options objects.
@@ -44,7 +45,7 @@ module.exports = function(grunt) {
         }
       }).map(function(filepath) {
         // Read file source.
-        var src = grunt.file.read(filepath);
+        var src = grunt.file.read(filepath, { encoding: options.encoding });
         // Process files as templates if requested.
         if (typeof options.process === 'function') {
           src = options.process(src, filepath);
@@ -57,9 +58,9 @@ module.exports = function(grunt) {
         }
         return src;
       }).join(options.separator) + footer;
-
+        
       // Write the destination file.
-      grunt.file.write(f.dest, src);
+      grunt.file.write(f.dest, src, { encoding: options.encoding });
 
       // Print a success message.
       grunt.log.writeln('File "' + f.dest + '" created.');
