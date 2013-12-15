@@ -38,5 +38,9 @@
   },
   "keywords": [
     "gruntplugin"
+  ],
+  "files": [
+    "tasks",
+    "LICENSE-MIT"
   ]
 }
