@@ -81,5 +81,22 @@ exports.concat = {
     test.equal(actual, expected, 'should overwrite contents.');
 
     test.done();
+  },
+  sourcemap_options: function(test) {
+    test.expect(3);
+
+    var actual = getNormalizedFile('tmp/sourcemap_inline');
+    var expected = getNormalizedFile('test/expected/sourcemap_inline');
+    test.equal(actual, expected, 'should output the source with inlined map.');
+
+    actual = getNormalizedFile('tmp/maps/sourcemap2_link.map');
+    expected = getNormalizedFile('test/expected/sourcemap2_link.map');
+    test.equal(actual, expected, 'should output the constructed map.');
+
+    actual = getNormalizedFile('tmp/sourcemap3_embed_map.map');
+    expected = getNormalizedFile('test/expected/sourcemap3_embed.map');
+    test.equal(actual, expected, 'should output the constructed map.');
+
+    test.done();
   }
 };

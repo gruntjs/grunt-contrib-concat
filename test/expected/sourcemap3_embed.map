@@ -1,0 +1,1 @@
+{"version":3,"sources":["../test/fixtures/file1","../test/fixtures/mappedsource_embed","../test/fixtures/file2"],"names":[],"mappings":"AAAA;ACCA,E;ADDA,K;AEAA","file":"sourcemap3_embed","sourcesContent":["file1","file1\n//","file2"]}
