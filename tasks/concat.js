@@ -13,6 +13,7 @@ module.exports = function(grunt) {
   // Internal lib.
   var comment = require('./lib/comment').init(grunt);
   var chalk = require('chalk');
+  var sourcemap = require('./lib/sourcemap').init(grunt);
 
   grunt.registerMultiTask('concat', 'Concatenate files.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
@@ -21,7 +22,10 @@ module.exports = function(grunt) {
       banner: '',
       footer: '',
       stripBanners: false,
-      process: false
+      process: false,
+      sourceMap: false,
+      sourceMapName: undefined,
+      sourceMapStyle: 'embed'
     });
 
     // Normalize boolean options that accept options objects.
@@ -32,8 +36,35 @@ module.exports = function(grunt) {
     var banner = grunt.template.process(options.banner);
     var footer = grunt.template.process(options.footer);
 
+    // Set a local variable for whether to build source maps or not.
+    var sourceMap = options.sourceMap;
+
+    // If content is not embedded and it will be modified, either exit or do
+    // not make the source map.
+    if (
+      sourceMap && options.sourceMapStyle === 'link' &&
+        (options.stripBanners || options.process)
+    ) {
+      // Warn and exit if --force isn't set.
+      grunt.warn(
+        'stripBanners or process option is enabled. ' +
+        'Set sourceMapStyle option to \'embed\' or \'inline\'.'
+      );
+      // --force is set, continue on without the source map.
+      grunt.log.warn('Skipping creation of source maps.');
+      // Set sourceMap to false to keep maps from being constructed.
+      sourceMap = false;
+    }
+
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
+      // Initialize source map objects.
+      var sourceMapHelper;
+      if (sourceMap) {
+        sourceMapHelper = sourcemap.helper(f, options);
+        sourceMapHelper.add(banner);
+      }
+
       // Concat banner + specified files + footer.
       var src = banner + f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
@@ -43,7 +74,7 @@ module.exports = function(grunt) {
         } else {
           return true;
         }
-      }).map(function(filepath) {
+      }).map(function(filepath, i) {
         if (grunt.file.isDir(filepath)) {
           return;
         }
@@ -59,8 +90,22 @@ module.exports = function(grunt) {
         if (options.stripBanners) {
           src = comment.stripBanner(src, options.stripBanners);
         }
+        // Add the lines of this file to our map.
+        if (sourceMapHelper) {
+          src = sourceMapHelper.addlines(src, filepath);
+          if (i < f.src.length - 1) {
+            sourceMapHelper.add(options.separator);
+          }
+        }
         return src;
       }).join(options.separator) + footer;
+
+      if (sourceMapHelper) {
+        sourceMapHelper.add(footer);
+        sourceMapHelper.write();
+        // Add sourceMappingURL to the end.
+        src += sourceMapHelper.url();
+      }
 
       // Write the destination file.
       grunt.file.write(f.dest, src);

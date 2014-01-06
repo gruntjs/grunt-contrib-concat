@@ -50,3 +50,21 @@ _(Default processing options are explained in the [grunt.template.process][] doc
 
   [templates]: https://github.com/gruntjs/grunt-docs/blob/master/grunt.template.md
   [grunt.template.process]: https://github.com/gruntjs/grunt-docs/blob/master/grunt.template.md#grunttemplateprocess
+
+## sourceMap
+Type: `Boolean`
+Default: `false`
+
+Set to true to create a source map. The source map will be created alongside the destination file, and share the same file name with the `.map` extension appended to it.
+
+## sourceMapName
+Type: `String` `Function`
+Default: `undefined`
+
+To customize the name or location of the generated source map, pass a string to indicate where to write the source map to. If a function is provided, the concat destination is passed as the argument and the return value will be used as the file name.
+
+## sourceMapStyle
+Type: `String`
+Default: `embed`
+
+Determines the type of source map that is generated. The default value, `embed`, places the content of the sources directly into the map. `link` will reference the original sources in the map as links. `inline` will store the entire map as a data URI in the destination file.
