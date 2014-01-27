@@ -12,6 +12,7 @@ module.exports = function(grunt) {
 
   // Internal lib.
   var comment = require('./lib/comment').init(grunt);
+  var chalk = require('chalk');
 
   grunt.registerMultiTask('concat', 'Concatenate files.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
@@ -62,7 +63,7 @@ module.exports = function(grunt) {
       grunt.file.write(f.dest, src);
 
       // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
+      grunt.log.writeln('File ' + chalk.cyan(f.dest) + ' created.');
     });
   });
 
