@@ -96,8 +96,8 @@ grunt.initConfig({
     dist: {
       src: ['src/intro.js', 'src/project.js', 'src/outro.js'],
       dest: 'dist/built.js',
-    },
-  },
+    }
+  }
 });
 ```
 
@@ -122,8 +122,8 @@ grunt.initConfig({
     dist: {
       src: ['src/project.js'],
       dest: 'dist/built.js',
-    },
-  },
+    }
+  }
 });
 ```
 
@@ -144,8 +144,8 @@ grunt.initConfig({
     extras: {
       src: ['src/main.js', 'src/extras.js'],
       dest: 'dist/with_extras.js',
-    },
-  },
+    }
+  }
 });
 ```
 
@@ -165,9 +165,9 @@ grunt.initConfig({
       files: {
         'dist/basic.js': ['src/main.js'],
         'dist/with_extras.js': ['src/main.js', 'src/extras.js'],
-      },
-    },
-  },
+      }
+    }
+  }
 });
 ```
 
@@ -185,8 +185,8 @@ grunt.initConfig({
     dist: {
       src: ['src/main.js'],
       dest: 'dist/<%= pkg.name %>-<%= pkg.version %>.js',
-    },
-  },
+    }
+  }
 });
 ```
 
@@ -212,8 +212,8 @@ grunt.initConfig({
     extras: {
       src: ['<%= dirs.src %>/main.js', '<%= dirs.src %>/extras.js'],
       dest: '<%= dirs.dest %>/with_extras.js',
-    },
-  },
+    }
+  }
 });
 ```
 
@@ -227,8 +227,8 @@ grunt.initConfig({
       src: ['src/invalid_or_missing_file'],
       dest: 'compiled.js',
       nonull: true,
-    },
-  },
+    }
+  }
 });
 ```
 
@@ -252,9 +252,9 @@ grunt.initConfig({
       },
       files: {
         'dist/built.js': ['src/project.js'],
-      },
-    },
-  },
+      }
+    }
+  }
 });
 ```
 
