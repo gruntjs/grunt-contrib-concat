@@ -17,7 +17,7 @@ exports.init = function(/*grunt*/) {
     var m = [];
     if (options.line) {
       // Strip // ... leading banners.
-      m.push('(?:.*\\/\\/.*\\r?\\n)*\\s*');
+      src = src.replace(/(?:.*\/\/.*\r?\n)\s*/g, '');
     }
     if (options.block) {
       // Strips all /* ... */ block comment banners.
@@ -26,7 +26,7 @@ exports.init = function(/*grunt*/) {
       // Strips only /* ... */ block comment banners, excluding /*! ... */.
       m.push('\\/\\*[^!][\\s\\S]*?\\*\\/');
     }
-    var re = new RegExp('^\\s*(?:' + m.join('|') + ')\\s*', '');
+    var re = new RegExp('\\s*?(?:' + m.join('|') + ')\\s*?', 'g');
     return src.replace(re, '');
   };
 
