@@ -48,12 +48,12 @@ module.exports = function(grunt) {
       },
       handling_invalid_files: {
         src: ['test/fixtures/file1', 'invalid_file/should_warn/but_not_fail', 'test/fixtures/file2'],
-        dest: 'tmp/handling_invalid_files',
+        dest: 'tmp/warn_on_invalid_files',
         nonull: true,
       },
       handling_invalid_file_fail: {
         src: ['test/fixtures/file1', 'invalid_file/should_warn/and_fail', 'test/fixtures/file2'],
-        dest: 'tmp/handling_invalid_files',
+        dest: 'tmp/fail_on_invalid_files',
         options: { failOnMissing: true },
         nonull: true,
       },
@@ -86,9 +86,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-internal');
 
+  grunt.registerTask('force', function() {
+      grunt.log.writeln('setting force option (required to test failOnMissing)');
+      grunt.option('force', true);
+  });
+
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'concat', 'nodeunit']);
+  grunt.registerTask('test', ['force', 'clean', 'concat', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test', 'build-contrib']);

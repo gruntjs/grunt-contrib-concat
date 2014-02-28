@@ -26,12 +26,21 @@ exports.concat = {
 
     test.done();
   },
-  handling_invalid_files: function(test) {
+  warn_on_invalid_files: function(test) {
     test.expect(1);
 
-    var actual = getNormalizedFile('tmp/handling_invalid_files');
-    var expected = getNormalizedFile('test/expected/handling_invalid_files');
+    var actual = getNormalizedFile('tmp/warn_on_invalid_files');
+    var expected = getNormalizedFile('test/expected/warn_on_invalid_files');
     test.equal(actual, expected, 'will have warned, but should not fail.');
+
+    test.done();
+  },
+  fail_on_invalid_files: function(test) {
+    test.expect(1);
+
+    var exists = grunt.file.exists('tmp/fail_on_invalid_files');
+    console.log('exists', exists);
+    test.equal(exists, false, 'did not fail as expected.');
 
     test.done();
   },
