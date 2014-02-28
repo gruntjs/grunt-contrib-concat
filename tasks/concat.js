@@ -35,10 +35,12 @@ module.exports = function(grunt) {
 
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
+      var missing = false;
       // Concat banner + specified files + footer.
       var src = banner + f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
+          missing = true;
           if (options.failOnMissing) {
             grunt.warn('Source file "' + filepath + '" not found.', 6);
           } else {
@@ -63,6 +65,11 @@ module.exports = function(grunt) {
         }
         return src;
       }).join(options.separator) + footer;
+
+      // Don't write it out if failOnMissing is true
+      if (missing && options.failOnMissing) {
+        return;
+      }
 
       // Write the destination file.
       grunt.file.write(f.dest, src);
