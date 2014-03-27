@@ -49,7 +49,7 @@ module.exports = function(grunt) {
       handling_invalid_files: {
         src: ['test/fixtures/file1', 'invalid_file/should_warn/but_not_fail', 'test/fixtures/file2'],
         dest: 'tmp/handling_invalid_files',
-        nonull: true,
+        nonull: true
       },
       process_function: {
         options: {
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
         files: {
           'tmp/process_function': ['test/fixtures/file1', 'test/fixtures/file2']
         }
-      },
+      }
     },
 
     // Unit tests.
