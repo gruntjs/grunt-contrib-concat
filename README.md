@@ -1,4 +1,4 @@
-# grunt-contrib-concat [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat)
+# grunt-contrib-concat v0.4.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat)
 
 > Concatenate files.
 
@@ -263,6 +263,7 @@ grunt.initConfig({
 
 ## Release History
 
+ * 2014-03-21   v0.4.0   README updates. Output updates.
  * 2013-04-25   v0.3.0   Add option to process files with a custom function.
  * 2013-04-08   v0.2.0   Don't normalize separator to allow user to set LF even on a Windows environment.
  * 2013-02-22   v0.1.3   Support footer option.
@@ -276,4 +277,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Thu Jul 18 2013 11:16:52.*
+*This file was generated on Mon Mar 31 2014 11:20:28.*

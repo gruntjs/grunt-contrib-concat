@@ -48,5 +48,5 @@ Process source files before concatenating, either as [templates][] or with a cus
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
-  [templates]: https://github.com/gruntjs/grunt/wiki/grunt.template
-  [grunt.template.process]: https://github.com/gruntjs/grunt/wiki/grunt.template#grunttemplateprocess
+  [templates]: https://github.com/gruntjs/grunt-docs/blob/master/grunt.template.md
+  [grunt.template.process]: https://github.com/gruntjs/grunt-docs/blob/master/grunt.template.md#grunttemplateprocess
