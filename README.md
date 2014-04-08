@@ -1,4 +1,4 @@
-# grunt-contrib-concat v0.4.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat)
+# grunt-contrib-concat v0.4.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-concat"><img src="https://ci.appveyor.com/api/projects/status/43qbw6jsp3rb2rh6/branch/master" alt="Build Status: Windows" height="18" /></a>
 
 > Concatenate files.
 
@@ -277,4 +277,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Mon Mar 31 2014 11:20:28.*
+*This file was generated on Tue Apr 08 2014 18:13:19.*
