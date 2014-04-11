@@ -46,6 +46,15 @@ Process source files before concatenating, either as [templates][] or with a cus
 * `data` object - Process source files using [grunt.template.process][], using the specified options.
 * `function(src, filepath)` - Process source files using the given function, called once for each file. The returned value will be used as source code.
 
+## failOnMissing
+Type: `Boolean`
+Default: `false`
+
+Enforce grunt fail (exit with value of 6) on missing src files when `nonull` config is set to `true`.
+
+* `false` - Ignore or warn on missing file (depending on `nonull` config).
+* `true` - Ignore or fail on missing file (depending on `nonull` config).
+
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
   [templates]: https://github.com/gruntjs/grunt-docs/blob/master/grunt.template.md
