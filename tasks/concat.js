@@ -44,6 +44,9 @@ module.exports = function(grunt) {
           return true;
         }
       }).map(function(filepath) {
+        if (grunt.file.isDir(filepath)) {
+          return;
+        }
         // Read file source.
         var src = grunt.file.read(filepath);
         // Process files as templates if requested.
