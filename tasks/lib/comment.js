@@ -17,7 +17,7 @@ exports.init = function(/*grunt*/) {
     var m = [];
     if (options.line) {
       // Strip // ... leading banners.
-      m.push('(?:.*\\/\\/.*\\r?\\n)*\\s*');
+      m.push('(?:.*\\/\\/.*\\r?\\n)+\\s*');
     }
     if (options.block) {
       // Strips all /* ... */ block comment banners.
