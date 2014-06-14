@@ -60,5 +60,14 @@ exports.concat = {
     test.equal(actual, expected, 'should have processed file content.');
 
     test.done();
+  },
+  process_dir_path: function(test) {
+    test.expect(1);
+
+    var actual = getNormalizedFile('tmp/process_dir_path');
+    var expected = getNormalizedFile('test/expected/process_dir_path');
+    test.equal(actual, expected, 'should have nothing.');
+
+    test.done();
   }
 };

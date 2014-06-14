@@ -62,6 +62,12 @@ module.exports = function(grunt) {
           'tmp/process_function': ['test/fixtures/file1', 'test/fixtures/file2']
         }
       },
+      dir: {
+        files: {
+          // no pattern, just directory given, should not error
+          'tmp/process_dir_path': ['test/fixtures']
+        }
+      },
     },
 
     // Unit tests.
