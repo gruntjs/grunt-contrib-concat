@@ -69,5 +69,14 @@ exports.concat = {
     test.equal(actual, expected, 'should have nothing.');
 
     test.done();
+  },
+  overwrite: function(test) {
+    test.expect(1);
+
+    var actual = getNormalizedFile('tmp/overwrite');
+    var expected = getNormalizedFile('test/expected/overwrite');
+    test.equal(actual, expected, 'should overwrite contents.');
+
+    test.done();
   }
 };

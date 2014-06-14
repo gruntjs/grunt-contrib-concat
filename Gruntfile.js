@@ -68,6 +68,16 @@ module.exports = function(grunt) {
           'tmp/process_dir_path': ['test/fixtures']
         }
       },
+      overwrite_one: {
+        files: {
+          'tmp/overwrite': ['test/fixtures/file1', 'test/fixtures/file2']
+        }
+      },
+      overwrite_two: {
+        files: {
+          'tmp/overwrite': ['test/fixtures/banner2.js']
+        }
+      },
     },
 
     // Unit tests.
