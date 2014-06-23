@@ -21,6 +21,7 @@ module.exports = function(grunt) {
     var options = this.options({
       separator: grunt.util.linefeed,
       banner: '',
+      binary: false,
       footer: '',
       stripBanners: false,
       process: false
