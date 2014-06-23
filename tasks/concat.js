@@ -8,6 +8,8 @@
 
 'use strict';
 
+var fs = require('fs');
+
 module.exports = function(grunt) {
 
   // Internal lib.
@@ -43,6 +45,9 @@ module.exports = function(grunt) {
           return true;
         }
       }).map(function(filepath) {
+        if (grunt.file.isDir(filepath)) {
+          return;
+        }
         // Read file source.
         if (options.binary) {
           var src = fs.readFileSync(filepath);
