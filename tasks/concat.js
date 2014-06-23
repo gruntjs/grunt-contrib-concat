@@ -8,6 +8,8 @@
 
 'use strict';
 
+var fs = require('fs');
+
 module.exports = function(grunt) {
 
   // Internal lib.
@@ -19,6 +21,7 @@ module.exports = function(grunt) {
     var options = this.options({
       separator: grunt.util.linefeed,
       banner: '',
+      binary: false,
       footer: '',
       stripBanners: false,
       process: false
@@ -34,8 +37,7 @@ module.exports = function(grunt) {
 
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
-      // Concat banner + specified files + footer.
-      var src = banner + f.src.filter(function(filepath) {
+      var buffers = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
@@ -48,22 +50,34 @@ module.exports = function(grunt) {
           return;
         }
         // Read file source.
-        var src = grunt.file.read(filepath);
+        if (options.binary) {
+          var src = fs.readFileSync(filepath);
+        }
+        else {
+          var src = grunt.file.read(filepath);
+        }
         // Process files as templates if requested.
         if (typeof options.process === 'function') {
           src = options.process(src, filepath);
-        } else if (options.process) {
+        } else if (!options.binary && options.process) {
           src = grunt.template.process(src, options.process);
         }
         // Strip banners if requested.
-        if (options.stripBanners) {
+        if (!options.binary && options.stripBanners) {
           src = comment.stripBanner(src, options.stripBanners);
         }
         return src;
-      }).join(options.separator) + footer;
+      });
 
       // Write the destination file.
-      grunt.file.write(f.dest, src);
+      if (options.binary) {
+        fs.writeFileSync(f.dest, Buffer.concat(buffers));
+      }
+      else {
+        // Concat banner + specified files + footer.
+        var output = banner + buffers.join(options.separator) + footer;
+        grunt.file.write(f.dest, output);
+      }
 
       // Print a success message.
       grunt.log.writeln('File ' + chalk.cyan(f.dest) + ' created.');
