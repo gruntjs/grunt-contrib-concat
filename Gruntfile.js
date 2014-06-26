@@ -10,6 +10,8 @@
 
 module.exports = function(grunt) {
 
+  var path = require('path');
+
   // Project configuration.
   grunt.initConfig({
     jshint: {
@@ -78,6 +80,52 @@ module.exports = function(grunt) {
           'tmp/overwrite': ['test/fixtures/banner2.js']
         }
       },
+      sourcemap_options: {
+        options: {
+          banner: '// banner\n',
+          footer: '\n// footer',
+          sourceMap: true,
+          sourceMapStyle: 'inline'
+        },
+        files: {
+          'tmp/sourcemap_inline': [
+            'test/fixtures/file1',
+            'test/fixtures/file2'
+          ]
+        }
+      },
+      sourcemap2_options: {
+        options: {
+          sourceMap: true,
+          sourceMapName: function(dest) {
+            return path.join(
+              path.dirname(dest),
+              'maps',
+              path.basename(dest) + '.map'
+            );
+          },
+          sourceMapStyle: 'link'
+        },
+        files: {
+          'tmp/sourcemap2_link': [
+            'test/fixtures/mappedsource',
+            'test/fixtures/file2'
+          ]
+        }
+      },
+      sourcemap3_options: {
+        options: {
+          sourceMap: true,
+          sourceMapName: 'tmp/sourcemap3_embed_map.map'
+        },
+        files: {
+          'tmp/sourcemap3_embed': [
+            'test/fixtures/mappedsource_embed',
+            'test/fixtures/file1',
+            'test/fixtures/file2'
+          ]
+        }
+      }
     },
 
     // Unit tests.
