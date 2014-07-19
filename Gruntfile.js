@@ -126,7 +126,31 @@ module.exports = function(grunt) {
             'test/fixtures/file2'
           ]
         }
-      }
+      },
+      sourcemap_js: {
+        options: {
+          banner: '/*\nJS Banner\n*/\n',
+          sourceMap: true
+        },
+        files: {
+          'tmp/sourcemap_js.js': [
+            'test/fixtures/js1.js',
+            'test/fixtures/js2.js'
+          ]
+        }
+      },
+      sourcemap_css: {
+        options: {
+          banner: '/*\nCSS Banner\n*/\n',
+          sourceMap: true
+        },
+        files: {
+          'tmp/sourcemap_css.css': [
+            'test/fixtures/css1.css',
+            'test/fixtures/css2.css'
+          ]
+        }
+      },
     },
 
     // Unit tests.
