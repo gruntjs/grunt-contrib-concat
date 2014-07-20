@@ -1,4 +1,4 @@
-# grunt-contrib-concat v0.5.0-pre [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-concat"><img src="https://ci.appveyor.com/api/projects/status/43qbw6jsp3rb2rh6/branch/master" alt="Build Status: Windows" height="18" /></a>
+# grunt-contrib-concat v0.5.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-concat"><img src="https://ci.appveyor.com/api/projects/status/43qbw6jsp3rb2rh6/branch/master" alt="Build Status: Windows" height="18" /></a>
 
 > Concatenate files.
 
@@ -281,6 +281,7 @@ grunt.initConfig({
 
 ## Release History
 
+ * 2014-07-19   v0.5.0   Adds sourceMap option.
  * 2014-03-21   v0.4.0   README updates. Output updates.
  * 2013-04-25   v0.3.0   Add option to process files with a custom function.
  * 2013-04-08   v0.2.0   Don't normalize separator to allow user to set LF even on a Windows environment.
@@ -295,4 +296,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Sat Jul 19 2014 14:23:02.*
+*This file was generated on Sat Jul 19 2014 19:25:49.*
