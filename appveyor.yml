@@ -7,7 +7,7 @@ version: "{build}"
 
 # fix lineendings in Windows
 init:
-  - git config --global core.autocrlf input
+  - git config --global core.autocrlf true
 
 # what combinations to test
 environment:
