@@ -69,16 +69,55 @@ exports.init = function(grunt) {
     var tokens = src.split(/\b/g);
 
     tokens.forEach(function(token, i) {
-      node.add(new SourceNode(lineIndex, charIndex, name, token));
-      // Count lines and chars.
-      token.split('\n').forEach(function(subtoken, j, subtokens) {
-        if (j < subtokens.length - 1) {
-          lineIndex++;
-          charIndex = 0;
+      // Since source-map 0.1.33, mappings stops at EOL.
+      // https://github.com/mozilla/source-map/issues/132#issuecomment-54353746
+      // Creating a single SourceNode when an EOL exists in the token
+      // may cause invalid line number mapping for debugger.
+      var eolIndex = token.search('\n');
+      var lineToken = null;
+      var afterEolToken = null;
+
+      if (eolIndex >= 0 && eolIndex < token.length) {
+        lineToken = token.substring(0, eolIndex+1);
+        afterEolToken= token.substring(eolIndex+1);
+      } else {
+        lineToken = token;
+        afterEolToken = null;
+      }
+
+      node.add(new SourceNode(lineIndex, charIndex, name, lineToken));
+
+      if (eolIndex > -1) {
+        lineIndex++;
+        charIndex = 0;
+      }
+
+      if (afterEolToken) {
+        var eolLastIndex = afterEolToken.lastIndexOf('\n');
+        var junkToken = null;
+        var nextLineToken = null;
+
+        if (eolLastIndex >= 0 && eolLastIndex < token.length) {
+          junkToken = afterEolToken.substring(0, eolLastIndex+1);
         } else {
-          charIndex += subtoken.length;
+          junkToken = afterEolToken;
         }
-      });
+
+        node.add(new SourceNode(lineIndex, charIndex, name, junkToken));
+
+        // Count lines and chars in afterEolToken.
+        afterEolToken.split('\n').forEach(function(subtoken, j, subtokens) {
+          if (j < subtokens.length - 1) {
+            lineIndex++;
+            charIndex = 0;
+          } else {
+            charIndex += subtoken.length;
+          }
+        });
+
+      } else {
+        charIndex += token.length;
+      }
     });
 
     return node;
