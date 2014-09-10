@@ -25,7 +25,8 @@ module.exports = function(grunt) {
       process: false,
       sourceMap: false,
       sourceMapName: undefined,
-      sourceMapStyle: 'embed'
+      sourceMapStyle: 'embed',
+      skipWhenSourceEmpty: false
     });
 
     // Normalize boolean options that accept options objects.
@@ -58,6 +59,11 @@ module.exports = function(grunt) {
 
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
+    
+      // This will keep count on files matched for concat
+      // (since 'this.files' can be wildcard-matched, 'filesMatched' can be either more or less than 'this.files')
+      var filesMatched = 0;
+    
       // Initialize source map objects.
       var sourceMapHelper;
       if (sourceMap) {
@@ -78,6 +84,8 @@ module.exports = function(grunt) {
         if (grunt.file.isDir(filepath)) {
           return;
         }
+        // Increase files matched count
+        filesMatched++;
         // Read file source.
         var src = grunt.file.read(filepath);
         // Process files as templates if requested.
@@ -99,6 +107,12 @@ module.exports = function(grunt) {
         }
         return src;
       }).join(options.separator) + footer;
+
+      if(options.skipWhenSourceEmpty===true && filesMatched===0) {
+          // Do not create file (or sourcemap) if no source files have been concatenated
+          grunt.log.writeln('File ' + chalk.yellow(f.dest) + ' skipped, source empty.');
+          return;
+      }
 
       if (sourceMapHelper) {
         sourceMapHelper.add(footer);

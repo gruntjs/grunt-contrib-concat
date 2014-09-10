@@ -106,5 +106,15 @@ exports.concat = {
     test.equal(actual, expected, 'should output the css map.');
 
     test.done();
+  },
+  skipWhenSourceEmpty_flagNotSet: function(test) {
+    test.expect(1);
+    test.ok(grunt.file.exists('tmp/skipWhenSourceEmpty_flagNotSet.css'), 'file should exist');
+    test.done();
+  },
+  skipWhenSourceEmpty_flagSet: function(test) {
+    test.expect(1);
+    test.ok(!grunt.file.exists('tmp/skipWhenSourceEmpty_flagSet.css'), 'file should not exist');
+    test.done();
   }
 };

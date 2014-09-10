@@ -98,6 +98,12 @@ Default: `embed`
 
 Determines the type of source map that is generated. The default value, `embed`, places the content of the sources directly into the map. `link` will reference the original sources in the map as links. `inline` will store the entire map as a data URI in the destination file.
 
+#### skipWhenSourceEmpty
+Type: `Boolean`
+Default: `false`
+
+Set to true to skip writing destination file when no source files are specified, or no source files could be matched.
+
 ### Usage Examples
 
 #### Concatenating with a custom separator
