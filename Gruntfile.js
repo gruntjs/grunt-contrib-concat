@@ -151,6 +151,29 @@ module.exports = function(grunt) {
           ]
         }
       },
+      
+      skipWhenSourceEmpty_flagNotSet: {
+        options: {
+          skipWhenSourceEmpty: false
+        },
+        files: {
+          'tmp/skipWhenSourceEmpty_flagNotSet.css': [
+            'test/thisfiledonotexist.ext'
+          ]
+        }
+      },
+      
+      skipWhenSourceEmpty_flagSet: {
+        options: {
+          skipWhenSourceEmpty: true
+        },
+        files: {
+          'tmp/skipWhenSourceEmpty_flagSet.css': [
+            'test/thisfiledonotexist.ext'
+          ]
+        }
+      },
+      
     },
 
     // Unit tests.
