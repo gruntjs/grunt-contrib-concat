@@ -66,19 +66,19 @@ exports.init = function(grunt) {
     var node = new SourceNode();
     var lineIndex = 1;
     var charIndex = 0;
-    var tokens = src.split(/\b/g);
+    // Tokenize on words, new lines, and white space.
+    var tokens = src.split(/(\n|[^\S\n]+|\b)/g);
+    // Filter out empty strings.
+    tokens = tokens.filter(function(t) { return !!t; });
 
-    tokens.forEach(function(token, i) {
+    tokens.forEach(function(token) {
       node.add(new SourceNode(lineIndex, charIndex, name, token));
-      // Count lines and chars.
-      token.split('\n').forEach(function(subtoken, j, subtokens) {
-        if (j < subtokens.length - 1) {
-          lineIndex++;
-          charIndex = 0;
-        } else {
-          charIndex += subtoken.length;
-        }
-      });
+      if (token === '\n') {
+        lineIndex++;
+        charIndex = 0;
+      } else {
+        charIndex += token.length;
+      }
     });
 
     return node;
