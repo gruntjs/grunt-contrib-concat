@@ -173,7 +173,7 @@ Like the previous example, in this example running `grunt concat` will build two
 
 This example differs in that both files are built under the same target.
 
-Using the `files` object, you can have list any number of source-destination pairs.
+Using the `files` object, you can list any number of source-destination pairs.
 
 ```js
 // Project configuration.
