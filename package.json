@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "chalk": "^0.5.1",
-    "source-map": "^0.2.0"
+    "source-map": "^0.3.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
