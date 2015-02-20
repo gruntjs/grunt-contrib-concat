@@ -1,3 +1,7 @@
+v0.5.1:
+  date: 2015-02-20
+  changes:
+    - Fix path issues with Source Maps on Windows.
 v0.5.0:
   date: 2014-07-19
   changes:

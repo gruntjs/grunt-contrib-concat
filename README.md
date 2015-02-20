@@ -1,4 +1,4 @@
-# grunt-contrib-concat v0.5.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-concat.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/l42173901ms416km/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-concat/branch/master)
+# grunt-contrib-concat v0.5.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-concat.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/l42173901ms416km/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-concat/branch/master)
 
 > Concatenate files.
 
@@ -281,6 +281,7 @@ grunt.initConfig({
 
 ## Release History
 
+ * 2015-02-20   v0.5.1   Fix path issues with Source Maps on Windows.
  * 2014-07-19   v0.5.0   Adds sourceMap option.
  * 2014-03-21   v0.4.0   README updates. Output updates.
  * 2013-04-25   v0.3.0   Add option to process files with a custom function.
@@ -296,4 +297,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Wed Feb 18 2015 22:55:48.*
+*This file was generated on Fri Feb 20 2015 10:39:55.*
