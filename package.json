@@ -20,7 +20,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "chalk": "^0.5.1",
+    "chalk": "^1.0.0",
     "source-map": "^0.3.0"
   },
   "devDependencies": {
