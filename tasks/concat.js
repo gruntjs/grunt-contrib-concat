@@ -29,8 +29,12 @@ module.exports = function(grunt) {
     });
 
     // Normalize boolean options that accept options objects.
-    if (options.stripBanners === true) { options.stripBanners = {}; }
-    if (options.process === true) { options.process = {}; }
+    if (options.stripBanners === true) {
+      options.stripBanners = {};
+    }
+    if (options.process === true) {
+      options.process = {};
+    }
 
     // Process banner and footer.
     var banner = grunt.template.process(options.banner);
@@ -71,9 +75,8 @@ module.exports = function(grunt) {
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
           return false;
-        } else {
-          return true;
         }
+        return true;
       }).map(function(filepath, i) {
         if (grunt.file.isDir(filepath)) {
           return;

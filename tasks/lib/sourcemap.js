@@ -31,7 +31,7 @@ exports.init = function(grunt) {
     } else if (typeof options.sourceMapName === 'function') {
       dest = options.sourceMapName(dest);
     } else {
-      dest = dest + '.map';
+      dest += '.map';
     }
 
     // Inline style and sourceMapName together doesn't work
@@ -69,7 +69,9 @@ exports.init = function(grunt) {
     // Tokenize on words, new lines, and white space.
     var tokens = src.split(/(\n|[^\S\n]+|\b)/g);
     // Filter out empty strings.
-    tokens = tokens.filter(function(t) { return !!t; });
+    tokens = tokens.filter(function(t) {
+      return !!t;
+    });
 
     tokens.forEach(function(token) {
       node.add(new SourceNode(lineIndex, charIndex, name, token));
@@ -176,12 +178,12 @@ exports.init = function(grunt) {
     // ensure we're using forward slashes, because these are URLs
     var file = path.relative(path.dirname(this.dest), this.files.dest);
     file = file.replace(/\\/g, '/');
-    var code_map = this.node.toStringWithSourceMap({
+    var codeMap = this.node.toStringWithSourceMap({
       file: file
     });
     // Consume the new sourcemap.
     var generator = SourceMapGenerator.fromSourceMap(
-      new SourceMapConsumer(code_map.map.toJSON())
+      new SourceMapConsumer(codeMap.map.toJSON())
     );
     // Consume sourcemaps for source files.
     this.maps.forEach(Function.apply.bind(generator.applySourceMap, generator));
@@ -193,13 +195,13 @@ exports.init = function(grunt) {
         'Source map for ' + chalk.cyan(this.files.dest) + ' inlined.'
       );
       return JSON.stringify(newSourceMap, null, '');
-    } else {
-      grunt.file.write(
-        this.dest,
-        JSON.stringify(newSourceMap, null, '')
-      );
-      grunt.log.writeln('Source map ' + chalk.cyan(this.dest) + ' created.');
     }
+    grunt.file.write(
+      this.dest,
+      JSON.stringify(newSourceMap, null, '')
+    );
+    grunt.log.writeln('Source map ' + chalk.cyan(this.dest) + ' created.');
+
   };
 
   // Non-private function to write the sourcemap. Shortcuts if writing a inline

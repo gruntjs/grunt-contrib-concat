@@ -13,7 +13,10 @@ exports.init = function(/*grunt*/) {
 
   // Return the given source code with any leading banner comment stripped.
   exports.stripBanner = function(src, options) {
-    if (!options) { options = {}; }
+    if (!options) {
+      options = {};
+    }
+
     var m = [];
     if (options.line) {
       // Strip // ... leading banners.

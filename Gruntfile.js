@@ -31,7 +31,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    banner_property: 'AWESOME',
+    bannerProperty: 'AWESOME',
     concat: {
       default_options: {
         files: {
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
       custom_options: {
         options: {
           separator: '\n;\n',
-          banner: '/* THIS TEST IS <%= banner_property %> */\n',
+          banner: '/* THIS TEST IS <%= bannerProperty %> */\n',
           footer: 'dude'
         },
         files: {
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
       handling_invalid_files: {
         src: ['test/fixtures/file1', 'invalid_file/should_warn/but_not_fail', 'test/fixtures/file2'],
         dest: 'tmp/handling_invalid_files',
-        nonull: true,
+        nonull: true
       },
       process_function: {
         options: {
@@ -150,7 +150,7 @@ module.exports = function(grunt) {
             'test/fixtures/css2.css'
           ]
         }
-      },
+      }
     },
 
     // Unit tests.
