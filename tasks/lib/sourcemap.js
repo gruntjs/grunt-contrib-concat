@@ -96,7 +96,8 @@ exports.init = function(grunt) {
   // Add the lines of a given file to the sourcemap. If in the file, store a
   // prior sourcemap and return src with sourceMappingURL removed.
   SourceMapConcatHelper.prototype.addlines = function(src, filename) {
-    var relativeFilename = path.relative(path.dirname(this.dest), filename);
+    var destDirectory = path.dirname(this.dest),
+        relativeFilename = path.relative(destDirectory, filename);
     // sourceMap path references are URLs, so ensure forward slashes are used for paths passed to sourcemap library
     relativeFilename = relativeFilename.replace(/\\/g, '/');
     var node;
@@ -122,8 +123,7 @@ exports.init = function(grunt) {
       var sourceMap = JSON.parse(sourceContent);
       var sourceMapConsumer = new SourceMapConsumer(sourceMap);
       // Consider the relative path from source files to new sourcemap.
-      var sourcePathToSourceMapPath =
-        path.relative(path.dirname(this.dest), path.dirname(sourceMapPath));
+      var sourcePathToSourceMapPath = path.relative(destDirectory, sourceMapConsumer.sourceRoot || path.dirname(sourceMapPath));
       // sourceMap path references are URLs, so ensure forward slashes are used for paths passed to sourcemap library
       sourcePathToSourceMapPath = sourcePathToSourceMapPath.replace(/\\/g, '/');
       // Store the sourceMap so that it may later be consumed.
