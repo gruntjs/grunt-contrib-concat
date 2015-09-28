@@ -16,9 +16,11 @@ exports.init = function(grunt) {
 
   // Third party libs
   var chalk = require('chalk');
-  var SourceMapConsumer = require('source-map').SourceMapConsumer;
-  var SourceMapGenerator = require('source-map').SourceMapGenerator;
-  var SourceNode = require('source-map').SourceNode;
+  var SourceMap = require('source-map');
+  var SourceMapConsumer = SourceMap.SourceMapConsumer;
+  var SourceMapGenerator = SourceMap.SourceMapGenerator;
+
+  var NO_OP = function(){};
 
   // Return an object that is used to track sourcemap data between calls.
   exports.helper = function(files, options) {
@@ -52,45 +54,83 @@ exports.init = function(grunt) {
     this.files = options.files;
     this.dest = options.dest;
     this.options = options.options;
+    this.line = 1;
+    this.column = 0;
 
-    // Create the source map node we'll add concat files into.
-    this.node = new SourceNode();
-
-    // Create an array to store source maps that are referenced from files
-    // being concatenated.
-    this.maps = [];
+    // ensure we're using forward slashes, because these are URLs
+    var file = path.relative(path.dirname(this.dest), this.files.dest).replace(/\\/g, '/');
+    var generator = new SourceMapGenerator({
+      file: file
+    });
+    this.file = file;
+    this.generator = generator;
+    this.addMapping = function(genLine, genCol, orgLine, orgCol, source, name) {
+      if (!source) {
+        generator.addMapping({
+          generated: {line: genLine, column: genCol}
+        });
+      } else {
+        if (!name) {
+          generator.addMapping({
+            generated: {line: genLine, column: genCol},
+            original: {line: orgLine, column: orgCol},
+            source: source
+          });
+        } else {
+          generator.addMapping({
+            generated: {line: genLine, column: genCol},
+            original: {line: orgLine, column: orgCol},
+            source: source,
+            name: name
+          });
+        }
+      }
+    };
   }
 
-  // Construct a node split by a zero-length regex.
-  SourceMapConcatHelper.prototype._dummyNode = function(src, name) {
-    var node = new SourceNode();
-    var lineIndex = 1;
-    var charIndex = 0;
+  // Parse only to increment the generated file's column and line count
+  SourceMapConcatHelper.prototype.add = function(src) {
+    this._forEachTokenPosition(src);
+  };
+
+  /**
+   * Parse the source file into tokens and apply the provided callback
+   * with the position of the token boundaries in the original file, and
+   * in the generated file.
+   *
+   * @param src The sources to tokenize. Required
+   * @param filename The name of the source file. Optional
+   * @param callback What to do with the token position indices. Optional
+   */
+  SourceMapConcatHelper.prototype._forEachTokenPosition = function(src, filename, callback) {
+    var genLine = this.line;
+    var genCol = this.column;
+    var orgLine = 1;
+    var orgCol = 0;
     // Tokenize on words, new lines, and white space.
     var tokens = src.split(/(\n|[^\S\n]+|\b)/g);
     // Filter out empty strings.
     tokens = tokens.filter(function(t) {
       return !!t;
     });
-
+    if (!callback) {
+      callback = NO_OP;
+    }
     tokens.forEach(function(token) {
-      node.add(new SourceNode(lineIndex, charIndex, name, token));
+      callback(genLine, genCol, orgLine, orgCol, filename);
       if (token === '\n') {
-        lineIndex++;
-        charIndex = 0;
+        ++orgLine;
+        ++genLine;
+        orgCol = 0;
+        genCol = 0;
       } else {
-        charIndex += token.length;
+        orgCol += token.length;
+        genCol += token.length;
       }
     });
 
-    return node;
-  };
-
-  // Add some arbitraty text to the sourcemap.
-  SourceMapConcatHelper.prototype.add = function(src) {
-    // Use the dummy node to track new lines and character offset in the unnamed
-    // concat pieces (banner, footer, separator).
-    this.node.add(this._dummyNode(src));
+    this.line = genLine;
+    this.column = genCol;
   };
 
   // Add the lines of a given file to the sourcemap. If in the file, store a
@@ -99,7 +139,6 @@ exports.init = function(grunt) {
     var relativeFilename = path.relative(path.dirname(this.dest), filename);
     // sourceMap path references are URLs, so ensure forward slashes are used for paths passed to sourcemap library
     relativeFilename = relativeFilename.replace(/\\/g, '/');
-    var node;
     if (
       /\/\/[@#]\s+sourceMappingURL=(.+)/.test(src) ||
         /\/\*#\s+sourceMappingURL=(\S+)\s+\*\//.test(src)
@@ -119,32 +158,53 @@ exports.init = function(grunt) {
         sourceMapPath = path.resolve(path.dirname(filename), sourceMapFile);
         sourceContent = grunt.file.read(sourceMapPath);
       }
+      var sourceMapDir = path.dirname(sourceMapPath);
       var sourceMap = JSON.parse(sourceContent);
       var sourceMapConsumer = new SourceMapConsumer(sourceMap);
       // Consider the relative path from source files to new sourcemap.
-      var sourcePathToSourceMapPath =
-        path.relative(path.dirname(this.dest), path.dirname(sourceMapPath));
-      // sourceMap path references are URLs, so ensure forward slashes are used for paths passed to sourcemap library
-      sourcePathToSourceMapPath = sourcePathToSourceMapPath.replace(/\\/g, '/');
-      // Store the sourceMap so that it may later be consumed.
-      this.maps.push([
-        sourceMapConsumer, relativeFilename, sourcePathToSourceMapPath
-      ]);
+      var sourcePathToSourceMapPath = path.relative(path.dirname(this.dest), sourceMapDir);
+      // Transfer the existing mappings into this mapping
+      var initLine = this.line;
+      var initCol = this.column;
+      sourceMapConsumer.eachMapping(function(args){
+        var source;
+        if (args.source) {
+          source = path.join(sourcePathToSourceMapPath, args.source).replace(/\\/g, '/');
+        } else {
+          source = null;
+        }
+        this.line = initLine + args.generatedLine - 1;
+        if (this.line === initLine) {
+          this.column = initCol + args.generatedColumn;
+        } else {
+          this.column = args.generatedColumn;
+        }
+        this.addMapping(
+          this.line,
+          this.column,
+          args.originalLine,
+          args.originalColumn,
+          source,
+          args.name
+        );
+      }, this);
+      if (sourceMap.sources && sourceMap.sources.length && sourceMap.sourcesContent) {
+        for (var i = 0; i < sourceMap.sources.length; ++i) {
+          this.generator.setSourceContent(
+            path.join(sourcePathToSourceMapPath, sourceMap.sources[i]).replace(/\\/g, '/'),
+            sourceMap.sourcesContent[i]
+          );
+        }
+      }
       // Remove the old sourceMappingURL.
       src = src.replace(/[@#]\s+sourceMappingURL=[^\s]+/, '');
-      // Create a node from the source map for the file.
-      node = SourceNode.fromStringWithSourceMap(
-        src, sourceMapConsumer, sourcePathToSourceMapPath
-      );
     } else {
-      // Use a dummy node. Performs a rudimentary tokenization of the source.
-      node = this._dummyNode(src, relativeFilename);
+      // Otherwise perform a rudimentary tokenization of the source.
+      this._forEachTokenPosition(src, relativeFilename, this.addMapping);
     }
 
-    this.node.add(node);
-
     if (this.options.sourceMapStyle !== 'link') {
-      this.node.setSourceContent(relativeFilename, src);
+      this.generator.setSourceContent(relativeFilename, src);
     }
 
     return src;
@@ -175,20 +235,8 @@ exports.init = function(grunt) {
 
   // Return a string for inline use or write the source map to disk.
   SourceMapConcatHelper.prototype._write = function() {
-    // ensure we're using forward slashes, because these are URLs
-    var file = path.relative(path.dirname(this.dest), this.files.dest);
-    file = file.replace(/\\/g, '/');
-    var codeMap = this.node.toStringWithSourceMap({
-      file: file
-    });
-    // Consume the new sourcemap.
-    var generator = SourceMapGenerator.fromSourceMap(
-      new SourceMapConsumer(codeMap.map.toJSON())
-    );
-    // Consume sourcemaps for source files.
-    this.maps.forEach(Function.apply.bind(generator.applySourceMap, generator));
     // New sourcemap.
-    var newSourceMap = generator.toJSON();
+    var newSourceMap = this.generator.toJSON();
     // Return a string for inline use or write the map.
     if (this.options.sourceMapStyle === 'inline') {
       grunt.log.writeln(
