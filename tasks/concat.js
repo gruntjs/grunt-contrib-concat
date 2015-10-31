@@ -70,27 +70,27 @@ module.exports = function(grunt) {
         sourceMapHelper.add(banner);
       }
 
-      // Concat banner + specified files + footer.
+      // Concat file sorting
       if(sorting){
+        f.src.sort(function(a,b){
+          var aContent = grunt.file.read(a);
+          var bContent = grunt.file.read(b);
+          var aResult = /\#order: (\d+)/.exec(aContent);
+          var bResult = /\#order: (\d+)/.exec(bContent);
 
-      f.src.sort(function(a,b){
-        var aContent = grunt.file.read(a);
-        var bContent = grunt.file.read(b);
-        var aResult = /\#order: (\d+)/.exec(aContent);
-        var bResult = /\#order: (\d+)/.exec(bContent);
+          if(aResult===null){
+            var aResult = [];
+            aResult[1]=0;
+          }
+          if(bResult===null){
+            var bResult = [];
+            bResult[1]=0;
+          }
+          return aResult[1]-bResult[1];
+        })
+      }
 
-        if(aResult===null){
-          var aResult = [];
-          aResult[1]=0;
-        }
-        if(bResult===null){
-          var bResult = [];
-          bResult[1]=0;
-        }
-        return aResult[1]-bResult[1];
-      })
-    }
-      console.dir(f.src);
+      // Concat banner + specified files + footer.
       var src = banner + f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
