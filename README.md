@@ -39,7 +39,7 @@ Concatenated files will be joined on this string. If you're post-processing conc
 Type: `Boolean`
 Default: false
 
-This value will be sort files before concat process. You may need to use this pattern
+This value will be sort files before concat process. You need to use this pattern
 in top of files: `#order: 1` ( you must leave a blank before integer)
 
 #### banner
