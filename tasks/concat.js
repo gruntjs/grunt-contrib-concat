@@ -114,7 +114,7 @@ module.exports = function(grunt) {
       grunt.file.write(f.dest, src);
 
       // Print a success message.
-      grunt.log.writeln('File ' + chalk.cyan(f.dest) + ' created.');
+      grunt.verbose.write('File ' + chalk.cyan(f.dest) + ' created.');
     });
   });
 

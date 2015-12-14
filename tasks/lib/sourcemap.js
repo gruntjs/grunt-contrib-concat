@@ -191,7 +191,7 @@ exports.init = function(grunt) {
     var newSourceMap = generator.toJSON();
     // Return a string for inline use or write the map.
     if (this.options.sourceMapStyle === 'inline') {
-      grunt.log.writeln(
+      grunt.verbose.writeln(
         'Source map for ' + chalk.cyan(this.files.dest) + ' inlined.'
       );
       return JSON.stringify(newSourceMap, null, '');
@@ -200,7 +200,7 @@ exports.init = function(grunt) {
       this.dest,
       JSON.stringify(newSourceMap, null, '')
     );
-    grunt.log.writeln('Source map ' + chalk.cyan(this.dest) + ' created.');
+    grunt.verbose.writeln('Source map ' + chalk.cyan(this.dest) + ' created.');
 
   };
 
