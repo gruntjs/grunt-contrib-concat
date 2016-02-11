@@ -25,7 +25,8 @@ module.exports = function(grunt) {
       process: false,
       sourceMap: false,
       sourceMapName: undefined,
-      sourceMapStyle: 'embed'
+      sourceMapStyle: 'embed',
+      sourceMapExclude: undefined
     });
 
     // Normalize boolean options that accept options objects.
@@ -63,10 +64,16 @@ module.exports = function(grunt) {
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
       // Initialize source map objects.
-      var sourceMapHelper;
+      var sourceMapHelper, sourceMapExclude;
       if (sourceMap) {
         sourceMapHelper = sourcemap.helper(f, options);
         sourceMapHelper.add(banner);
+        sourceMapExclude = {};
+        if (options.sourceMapExclude) {
+          grunt.file.match(options.sourceMapExclude, f.src).forEach(function(filepath) {
+            sourceMapExclude[filepath] = true;
+          });
+        }
       }
 
       // Concat banner + specified files + footer.
@@ -95,7 +102,11 @@ module.exports = function(grunt) {
         }
         // Add the lines of this file to our map.
         if (sourceMapHelper) {
-          src = sourceMapHelper.addlines(src, filepath);
+          if (sourceMapExclude[filepath]) {
+            sourceMapHelper.add(src);
+          } else {
+            src = sourceMapHelper.addlines(src, filepath);
+          }
           if (i < f.src.length - 1) {
             sourceMapHelper.add(options.separator);
           }
