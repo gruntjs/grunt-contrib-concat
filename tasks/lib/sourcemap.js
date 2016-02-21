@@ -22,34 +22,6 @@ exports.init = function(grunt) {
 
   var NO_OP = function(){};
 
-  // Return an object that is used to track sourcemap data between calls.
-  exports.helper = function(files, options) {
-    // Figure out the source map destination.
-    var dest = files.dest;
-    if (options.sourceMapStyle === 'inline') {
-      // Leave dest as is. It will be used to compute relative sources.
-    } else if (typeof options.sourceMapName === 'string') {
-      dest = options.sourceMapName;
-    } else if (typeof options.sourceMapName === 'function') {
-      dest = options.sourceMapName(dest);
-    } else {
-      dest += '.map';
-    }
-
-    // Inline style and sourceMapName together doesn't work
-    if (options.sourceMapStyle === 'inline' && options.sourceMapName) {
-      grunt.log.warn(
-        'Source map will be inlined, sourceMapName option ignored.'
-      );
-    }
-
-    return new SourceMapConcatHelper({
-      files: files,
-      dest: dest,
-      options: options
-    });
-  };
-
   function SourceMapConcatHelper(options) {
     this.files = options.files;
     this.dest = options.dest;
@@ -87,6 +59,34 @@ exports.init = function(grunt) {
       }
     };
   }
+
+  // Return an object that is used to track sourcemap data between calls.
+  exports.helper = function(files, options) {
+    // Figure out the source map destination.
+    var dest = files.dest;
+    if (options.sourceMapStyle === 'inline') {
+      // Leave dest as is. It will be used to compute relative sources.
+    } else if (typeof options.sourceMapName === 'string') {
+      dest = options.sourceMapName;
+    } else if (typeof options.sourceMapName === 'function') {
+      dest = options.sourceMapName(dest);
+    } else {
+      dest += '.map';
+    }
+
+    // Inline style and sourceMapName together doesn't work
+    if (options.sourceMapStyle === 'inline' && options.sourceMapName) {
+      grunt.log.warn(
+        'Source map will be inlined, sourceMapName option ignored.'
+      );
+    }
+
+    return new SourceMapConcatHelper({
+      files: files,
+      dest: dest,
+      options: options
+    });
+  };
 
   // Parse only to increment the generated file's column and line count
   SourceMapConcatHelper.prototype.add = function(src) {
