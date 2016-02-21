@@ -1,6 +1,14 @@
 sudo: false
 language: node_js
 node_js:
-  - '5'
-  - '4'
-  - '0.10'
+  - "0.10"
+  - "0.12"
+  - "4"
+  - "5"
+  - "iojs"
+before_install:
+  - npm install -g npm
+before_script:
+  - npm install -g grunt-cli
+matrix:
+  fast_finish: true
