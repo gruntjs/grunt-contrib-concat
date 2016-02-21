@@ -1,11 +1,10 @@
-# grunt-contrib-concat v0.5.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-concat.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/l42173901ms416km/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-concat/branch/master)
+# grunt-contrib-concat v1.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-concat.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/l42173901ms416km/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-concat/branch/master)
 
 > Concatenate files.
 
 
 
 ## Getting Started
-This plugin requires Grunt `>=0.4.0`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -30,29 +29,29 @@ Task targets, files and options may be specified according to the Grunt [Configu
 ### Options
 
 #### separator
-Type: `String`
+Type: `String`  
 Default: `grunt.util.linefeed`
 
 Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you may need to use a semicolon `';\n'` as the separator.
 
 #### banner
-Type: `String`
-Default: empty string
+Type: `String`  
+Default: `''`
 
 This string will be prepended to the beginning of the concatenated output. It is processed using [grunt.template.process][], using the default options.
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
 #### footer
-Type: `String`
-Default: empty string
+Type: `String`  
+Default: `''`
 
 This string will be appended to the end of the concatenated output. It is processed using [grunt.template.process][], using the default options.
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
 #### stripBanners
-Type: `Boolean` `Object`
+Type: `Boolean` `Object`  
 Default: `false`
 
 Strip JavaScript banner comments from source files.
@@ -65,7 +64,7 @@ Strip JavaScript banner comments from source files.
   * `line` - If true, any contiguous _leading_ `//` line comments are stripped.
 
 #### process
-Type: `Boolean` `Object` `Function`
+Type: `Boolean` `Object` `Function`  
 Default: `false`
 
 Process source files before concatenating, either as [templates][] or with a custom function.
@@ -81,19 +80,19 @@ _(Default processing options are explained in the [grunt.template.process][] doc
   [grunt.template.process]: https://github.com/gruntjs/grunt-docs/blob/master/grunt.template.md#grunttemplateprocess
 
 #### sourceMap
-Type: `Boolean`
+Type: `Boolean`  
 Default: `false`
 
 Set to true to create a source map. The source map will be created alongside the destination file, and share the same file name with the `.map` extension appended to it.
 
 #### sourceMapName
-Type: `String` `Function`
+Type: `String` `Function`  
 Default: `undefined`
 
 To customize the name or location of the generated source map, pass a string to indicate where to write the source map to. If a function is provided, the concat destination is passed as the argument and the return value will be used as the file name.
 
 #### sourceMapStyle
-Type: `String`
+Type: `String`  
 Default: `embed`
 
 Determines the type of source map that is generated. The default value, `embed`, places the content of the sources directly into the map. `link` will reference the original sources in the map as links. `inline` will store the entire map as a data URI in the destination file.
@@ -281,6 +280,7 @@ grunt.initConfig({
 
 ## Release History
 
+ * 2016-02-20   v1.0.0   Update source-map to 0.5.3 Tag Grunt as peerDep to >=0.4.0 Make source maps generation a little faster Add charset:utf-8 to sourceMappingURL
  * 2015-02-20   v0.5.1   Fix path issues with Source Maps on Windows.
  * 2014-07-19   v0.5.0   Adds sourceMap option.
  * 2014-03-21   v0.4.0   README updates. Output updates.
@@ -297,4 +297,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Fri Feb 20 2015 10:39:55.*
+*This file was generated on Sat Feb 20 2016 19:54:39.*
