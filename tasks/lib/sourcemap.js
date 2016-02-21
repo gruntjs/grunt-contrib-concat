@@ -109,25 +109,25 @@ exports.init = function(grunt) {
     var orgCol = 0;
     // Tokenize on words, new lines, and white space.
     var tokens = src.split(/(\n|[^\S\n]+|\b)/g);
-    // Filter out empty strings.
-    tokens = tokens.filter(function(t) {
-      return !!t;
-    });
     if (!callback) {
       callback = NO_OP;
     }
-    tokens.forEach(function(token) {
-      callback(genLine, genCol, orgLine, orgCol, filename);
-      if (token === '\n') {
-        ++orgLine;
-        ++genLine;
-        orgCol = 0;
-        genCol = 0;
-      } else {
-        orgCol += token.length;
-        genCol += token.length;
+    for (var i = 0, len = tokens.length; i < len; i++) {
+      var token = tokens[i];
+      if (token) {
+        // The if statement filters out empty strings.
+        callback(genLine, genCol, orgLine, orgCol, filename);
+        if (token === '\n') {
+          ++orgLine;
+          ++genLine;
+          orgCol = 0;
+          genCol = 0;
+        } else {
+          orgCol += token.length;
+          genCol += token.length;
+        }
       }
-    });
+    }
 
     this.line = genLine;
     this.column = genCol;
