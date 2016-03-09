@@ -32,7 +32,7 @@ Task targets, files and options may be specified according to the Grunt [Configu
 Type: `String`  
 Default: `grunt.util.linefeed`
 
-Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you may need to use a semicolon `';\n'` as the separator.
+Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you need to use a semicolon `';\n'` or valid javascript comment `'//###\n'` as the separator.
 
 #### banner
 Type: `String`  
