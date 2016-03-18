@@ -32,7 +32,7 @@ Task targets, files and options may be specified according to the Grunt [Configu
 Type: `String`  
 Default: `grunt.util.linefeed`
 
-Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you need to use a semicolon `';\n'` or valid javascript comment `'//###\n'` as the separator.
+Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you may need to use a semicolon `';\n'` as the separator.
 
 #### banner
 Type: `String`  
@@ -280,21 +280,21 @@ grunt.initConfig({
 
 ## Release History
 
- * 2016-02-20   v1.0.0   Update source-map to 0.5.3 Tag Grunt as peerDep to >=0.4.0 Make source maps generation a little faster Add charset:utf-8 to sourceMappingURL
- * 2015-02-20   v0.5.1   Fix path issues with Source Maps on Windows.
- * 2014-07-19   v0.5.0   Adds sourceMap option.
+ * 2016-02-20   v1.0.0   Update source-map to 0.5.3. Tag Grunt as peerDep to >=0.4.0. Make source maps generation a little faster. Add `charset:utf-8` to `sourceMappingURL`.
+ * 2015-02-20   v0.5.1   Fix path issues with source maps on Windows.
+ * 2014-07-19   v0.5.0   Adds `sourceMap` option.
  * 2014-03-21   v0.4.0   README updates. Output updates.
  * 2013-04-25   v0.3.0   Add option to process files with a custom function.
  * 2013-04-08   v0.2.0   Don't normalize separator to allow user to set LF even on a Windows environment.
  * 2013-02-22   v0.1.3   Support footer option.
  * 2013-02-15   v0.1.2   First official release for Grunt 0.4.0.
  * 2013-01-18   v0.1.2rc6   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
- * 2013-01-09   v0.1.2rc5   Updating to work with grunt v0.4.0rc5. Switching back to this.files api.
- * 2012-11-13   v0.1.1   Switch to this.file api internally.
+ * 2013-01-09   v0.1.2rc5   Updating to work with grunt v0.4.0rc5. Switching back to `this.files` API.
+ * 2012-11-13   v0.1.1   Switch to `this.file` API internally.
  * 2012-10-03   v0.1.0   Work in progress, not yet officially released.
 
 ---
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Sat Feb 20 2016 19:54:39.*
+*This file was generated on Fri Mar 18 2016 18:50:03.*
