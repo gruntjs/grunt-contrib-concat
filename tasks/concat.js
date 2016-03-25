@@ -21,6 +21,7 @@ module.exports = function(grunt) {
       separator: grunt.util.linefeed,
       banner: '',
       footer: '',
+      log: true,
       stripBanners: false,
       process: false,
       sourceMap: false,
@@ -114,7 +115,12 @@ module.exports = function(grunt) {
       grunt.file.write(f.dest, src);
 
       // Print a success message.
-      grunt.verbose.write('File ' + chalk.cyan(f.dest) + ' created.');
+      if (options.log === true) {
+        grunt.log.writeln('File ' + chalk.cyan(f.dest) + ' created.');
+      } else {
+        grunt.verbose.write('File ' + chalk.cyan(f.dest) + ' created.');
+      }
+      }
     });
   });
 
