@@ -239,16 +239,26 @@ exports.init = function(grunt) {
     var newSourceMap = this.generator.toJSON();
     // Return a string for inline use or write the map.
     if (this.options.sourceMapStyle === 'inline') {
-      grunt.verbose.writeln(
-        'Source map for ' + chalk.cyan(this.files.dest) + ' inlined.'
-      );
+      if ( this.options.log === true ) {
+        grunt.log.writeln(
+          'Source map for ' + chalk.cyan(this.files.dest) + ' inlined.'
+        );
+      } else {
+        grunt.verbose.writeln(
+          'Source map for ' + chalk.cyan(this.files.dest) + ' inlined.'
+        );
+      }
       return JSON.stringify(newSourceMap, null, '');
     }
     grunt.file.write(
       this.dest,
       JSON.stringify(newSourceMap, null, '')
     );
-    grunt.verbose.writeln('Source map ' + chalk.cyan(this.dest) + ' created.');
+    if ( this.options.log === true ) {
+      grunt.log.writeln('Source map ' + chalk.cyan(this.dest) + ' created.');
+    } else {
+      grunt.verbose.writeln('Source map ' + chalk.cyan(this.dest) + ' created.');
+    }
 
   };
 
