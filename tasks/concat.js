@@ -120,7 +120,6 @@ module.exports = function(grunt) {
       } else {
         grunt.verbose.write('File ' + chalk.cyan(f.dest) + ' created.');
       }
-      }
     });
   });
 
