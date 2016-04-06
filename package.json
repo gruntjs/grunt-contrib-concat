@@ -20,12 +20,11 @@
     "source-map": "^0.5.3"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-cli": "^0.1.13",
+    "grunt": "^1.0.0",
     "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-internal": "^0.4.2",
+    "grunt-contrib-internal": "^1.1.0",
     "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-nodeunit": "^0.4.0"
+    "grunt-contrib-nodeunit": "^1.0.0"
   },
   "peerDependencies": {
     "grunt": ">=0.4.0"
