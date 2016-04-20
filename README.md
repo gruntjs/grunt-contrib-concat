@@ -1,4 +1,4 @@
-# grunt-contrib-concat v1.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-concat.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/l42173901ms416km/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-concat/branch/master)
+# grunt-contrib-concat v1.0.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-concat.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/l42173901ms416km/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-concat/branch/master)
 
 > Concatenate files.
 
@@ -280,6 +280,7 @@ grunt.initConfig({
 
 ## Release History
 
+ * 2016-04-20   v1.0.1   Fix for concatenating multiple source map files.
  * 2016-02-20   v1.0.0   Update source-map to 0.5.3. Tag Grunt as peerDep to >=0.4.0. Make source maps generation a little faster. Add `charset:utf-8` to `sourceMappingURL`.
  * 2015-02-20   v0.5.1   Fix path issues with source maps on Windows.
  * 2014-07-19   v0.5.0   Adds `sourceMap` option.
@@ -297,4 +298,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Fri Mar 18 2016 18:50:03.*
+*This file was generated on Wed Apr 20 2016 08:41:44.*
