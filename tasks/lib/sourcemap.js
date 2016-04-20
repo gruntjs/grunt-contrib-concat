@@ -136,13 +136,11 @@ exports.init = function(grunt) {
   // Add the lines of a given file to the sourcemap. If in the file, store a
   // prior sourcemap and return src with sourceMappingURL removed.
   SourceMapConcatHelper.prototype.addlines = function(src, filename) {
+    var sourceMapRegEx = /\n\/[*/][@#]\s+sourceMappingURL=((?:(?!\s+\*\/).)*).*/;
     var relativeFilename = path.relative(path.dirname(this.dest), filename);
     // sourceMap path references are URLs, so ensure forward slashes are used for paths passed to sourcemap library
     relativeFilename = relativeFilename.replace(/\\/g, '/');
-    if (
-      /\/\/[@#]\s+sourceMappingURL=(.+)/.test(src) ||
-        /\/\*#\s+sourceMappingURL=(\S+)\s+\*\//.test(src)
-    ) {
+    if (sourceMapRegEx.test(src)) {
       var sourceMapFile = RegExp.$1;
       var sourceMapPath;
 
@@ -154,7 +152,7 @@ exports.init = function(grunt) {
         sourceContent = new Buffer(RegExp.$2, 'base64').toString();
       } else {
         // If sourceMapPath is relative, expand relative to the file
-        // refering to it.
+        // referring to it.
         sourceMapPath = path.resolve(path.dirname(filename), sourceMapFile);
         sourceContent = grunt.file.read(sourceMapPath);
       }
@@ -197,7 +195,7 @@ exports.init = function(grunt) {
         }
       }
       // Remove the old sourceMappingURL.
-      src = src.replace(/[@#]\s+sourceMappingURL=[^\s]+/, '');
+      src = src.replace(sourceMapRegEx, '');
     } else {
       // Otherwise perform a rudimentary tokenization of the source.
       this._forEachTokenPosition(src, relativeFilename, this.addMapping);
