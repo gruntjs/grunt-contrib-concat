@@ -156,6 +156,7 @@ exports.init = function(grunt) {
         sourceMapPath = path.resolve(path.dirname(filename), sourceMapFile);
         sourceContent = grunt.file.read(sourceMapPath);
       }
+
       var sourceMapDir = path.dirname(sourceMapPath);
       var sourceMap = JSON.parse(sourceContent);
       var sourceMapConsumer = new SourceMapConsumer(sourceMap);
@@ -186,12 +187,28 @@ exports.init = function(grunt) {
           args.name
         );
       }, this);
-      if (sourceMap.sources && sourceMap.sources.length && sourceMap.sourcesContent) {
+      if (sourceMap.sources && sourceMap.sources.length) {
         for (var i = 0; i < sourceMap.sources.length; ++i) {
-          this.generator.setSourceContent(
-            path.join(sourcePathToSourceMapPath, sourceMap.sources[i]).replace(/\\/g, '/'),
-            sourceMap.sourcesContent[i]
-          );
+          var includedSourceContent, includedSourcePath;
+
+          if(sourceMap.sourceRoot) {
+            includedSourcePath = sourceMap.sourceRoot + sourceMap.sources[i];
+          } else {
+            includedSourcePath = sourceMap.sources[i];
+          }
+
+          if(sourceMap.sourcesContent) {
+            includedSourceContent = sourceMap.sourcesContent[i];
+          } else {
+            includedSourceContent = grunt.file.read(path.resolve(sourceMapDir, includedSourcePath));
+          }
+
+          if(includedSourceContent) {
+            this.generator.setSourceContent(
+              path.join(sourcePathToSourceMapPath, includedSourcePath).replace(/\\/g, '/'),
+              includedSourceContent
+            );
+          }
         }
       }
       // Remove the old sourceMappingURL.
