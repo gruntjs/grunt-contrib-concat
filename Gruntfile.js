@@ -127,6 +127,19 @@ module.exports = function(grunt) {
           ]
         }
       },
+      sourcemap4_options: {
+        options: {
+          sourceMap: true,
+          sourceMapName: 'tmp/sourcemap4_exclude_map.map',
+          sourceMapExclude: ['test/fixtures/file1']
+        },
+        files: {
+          'tmp/sourcemap4_exclude': [
+            'test/fixtures/file1',
+            'test/fixtures/file2'
+          ]
+        }
+      },
       sourcemap_js: {
         options: {
           banner: '/*\nJS Banner\n*/\n',
