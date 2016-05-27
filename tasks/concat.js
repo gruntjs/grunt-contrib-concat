@@ -62,6 +62,7 @@ module.exports = function(grunt) {
 
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
+
       // Initialize source map objects.
       var sourceMapHelper;
       if (sourceMap) {
@@ -73,7 +74,12 @@ module.exports = function(grunt) {
       var src = banner + f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
+          var err = 'Source file "' + filepath + '" not found.';
+          if (f.nonull === 'error') {
+            grunt.fatal(new Error(err));
+          } else {
+            grunt.log.warn(err);
+          }
           return false;
         }
         return true;
