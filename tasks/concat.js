@@ -60,6 +60,24 @@ module.exports = function(grunt) {
       sourceMap = false;
     }
 
+    // grunt.fail.warn uses the "exit" library, which doesn't stop the process
+    // synchronously on Node.js 0.10 on Windows, which could result in files
+    // still being concatenated even when some are missing. See:
+    // https://github.com/nodejs/node-v0.x-archive/issues/3584#issuecomment-8034529
+    var exitEarly = false;
+    this.files.forEach(function(f) {
+      f.src.forEach(function(filepath) {
+        // Warn on invalid source files (if nonull was set).
+        if (!grunt.file.exists(filepath)) {
+          grunt.fail.warn('Source file "' + filepath + '" not found.');
+          exitEarly = true;
+        }
+      });
+    });
+    if (!grunt.option('force') && exitEarly) {
+      return;
+    }
+
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
       // Initialize source map objects.
@@ -71,13 +89,8 @@ module.exports = function(grunt) {
 
       // Concat banner + specified files + footer.
       var src = banner + f.src.filter(function(filepath) {
-        // Warn on invalid source files (if nonull was set). They will be
-        // removed if --force is specified.
-        if (!grunt.file.exists(filepath)) {
-          grunt.fail.warn('Source file "' + filepath + '" not found.');
-          return false;
-        }
-        return true;
+        // Invalid source files will be removed if --force is specified.
+        return grunt.file.exists(filepath);
       }).map(function(filepath, i) {
         if (grunt.file.isDir(filepath)) {
           return;
