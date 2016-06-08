@@ -155,7 +155,7 @@ module.exports = function(grunt) {
 
     // Unit tests.
     nodeunit: {
-      tests: ['test/concat_test.js']
+      tests: ['test/*_test.js']
     }
 
   });
