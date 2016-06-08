@@ -194,7 +194,7 @@ module.exports = function(grunt) {
         if (err && code === 1 && result.stdout.indexOf('Fatal error: Source file "invalid_file/should_warn/but_not_fail" not found') >= 0) {
           grunt.file.write('tmp/error_handling', 'pass');
         } else {
-          // return grunt.fatal('Expected fatal error, but none was reported.');
+          grunt.file.write('tmp/error_handling', 'fail');
         }
 
           return done();
