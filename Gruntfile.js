@@ -155,7 +155,7 @@ module.exports = function(grunt) {
 
     // Unit tests.
     nodeunit: {
-      tests: ['test/*_test.js']
+      tests: ['test/concat_test.js']
     }
 
   });
@@ -171,7 +171,37 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['jshint', 'clean', 'concat', 'nodeunit']);
+  grunt.registerTask('test', ['jshint', 'clean', 'concat', 'exec-concat-throw', 'nodeunit']);
+
+  grunt.registerTask('concat-throw', function() {
+
+      var conf = grunt.config('concat');
+      conf.handling_invalid_files.nonull = 'error';
+      grunt.config('concat', conf);
+      grunt.task.run(['concat:handling_invalid_files']);
+
+  });
+
+  grunt.registerTask('exec-concat-throw', function() {
+
+      var done = this.async();
+
+      grunt.util.spawn({
+        'cmd': 'grunt',
+        'args': ['concat-throw']
+      }, function(err, result, code) {
+
+        if (err && code === 1 && result.stdout.indexOf('Fatal error: Source file "invalid_file/should_warn/but_not_fail" not found') >= 0) {
+          grunt.file.write('tmp/error_handling', 'pass');
+        } else {
+          // return grunt.fatal('Expected fatal error, but none was reported.');
+        }
+
+          return done();
+
+      });
+
+  });
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['test', 'build-contrib']);

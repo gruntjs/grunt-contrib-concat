@@ -106,5 +106,10 @@ exports.concat = {
     test.equal(actual, expected, 'should output the css map.');
 
     test.done();
+  },
+  error_handling: function(test) {
+    var actual = getNormalizedFile('tmp/error_handling');
+    test.equal(actual, 'pass', 'An error should be thrown when "nonull": "error" is set');
+    test.done();
   }
 };
