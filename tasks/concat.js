@@ -37,8 +37,9 @@ module.exports = function(grunt) {
     }
 
     // Process banner and footer.
-    var banner = grunt.template.process(options.banner);
-    var footer = grunt.template.process(options.footer);
+    var templateLocals = options.process && options.process.data;
+    var banner = grunt.template.process(options.banner, templateLocals);
+    var footer = grunt.template.process(options.footer, templateLocals);
 
     // Set a local variable for whether to build source maps or not.
     var sourceMap = options.sourceMap;
@@ -117,5 +118,4 @@ module.exports = function(grunt) {
       grunt.verbose.write('File ' + chalk.cyan(f.dest) + ' created.');
     });
   });
-
 };
