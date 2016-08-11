@@ -14,7 +14,6 @@ module.exports = function(grunt) {
   var comment = require('./lib/comment').init(grunt);
   var chalk = require('chalk');
   var sourcemap = require('./lib/sourcemap').init(grunt);
-
   grunt.registerMultiTask('concat', 'Concatenate files.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
@@ -25,7 +24,8 @@ module.exports = function(grunt) {
       process: false,
       sourceMap: false,
       sourceMapName: undefined,
-      sourceMapStyle: 'embed'
+      sourceMapStyle: 'embed',
+      sorting: false
     });
 
     // Normalize boolean options that accept options objects.
@@ -43,6 +43,7 @@ module.exports = function(grunt) {
     // Set a local variable for whether to build source maps or not.
     var sourceMap = options.sourceMap;
 
+    var sorting = options.sorting;
     // If content is not embedded and it will be modified, either exit or do
     // not make the source map.
     if (
@@ -69,6 +70,26 @@ module.exports = function(grunt) {
         sourceMapHelper.add(banner);
       }
 
+      // Concat file sorting
+      if(sorting){
+        f.src.sort(function(a,b){
+          var aContent = grunt.file.read(a);
+          var bContent = grunt.file.read(b);
+          var aResult = /\#order: (\d+)/.exec(aContent);
+          var bResult = /\#order: (\d+)/.exec(bContent);
+
+          if(aResult===null){
+            var aResult = [];
+            aResult[1]=0;
+          }
+          if(bResult===null){
+            var bResult = [];
+            bResult[1]=0;
+          }
+          return aResult[1]-bResult[1];
+        })
+      }
+
       // Concat banner + specified files + footer.
       var src = banner + f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
@@ -82,8 +103,10 @@ module.exports = function(grunt) {
           return;
         }
         // Read file source.
+
         var src = grunt.file.read(filepath);
         // Process files as templates if requested.
+
         if (typeof options.process === 'function') {
           src = options.process(src, filepath);
         } else if (options.process) {

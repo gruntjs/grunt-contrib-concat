@@ -34,6 +34,13 @@ Default: `grunt.util.linefeed`
 
 Concatenated files will be joined on this string. If you're post-processing concatenated JavaScript files with a minifier, you may need to use a semicolon `';\n'` as the separator.
 
+#### sorting
+Type: `Boolean`
+Default: false
+
+This value will be sort files before concat process. You need to use this pattern
+in top of files: `#order: 1` ( you must leave a blank before integer)
+
 #### banner
 Type: `String`  
 Default: `''`
