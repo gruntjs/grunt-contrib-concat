@@ -108,11 +108,11 @@ In this example, running `grunt concat:dist` (or `grunt concat` because `concat`
 grunt.initConfig({
   concat: {
     options: {
-      separator: ';',
+      separator: ';'
     },
     dist: {
       src: ['src/intro.js', 'src/project.js', 'src/outro.js'],
-      dest: 'dist/built.js',
+      dest: 'dist/built.js'
     },
   },
 });
@@ -134,11 +134,11 @@ grunt.initConfig({
     options: {
       stripBanners: true,
       banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-        '<%= grunt.template.today("yyyy-mm-dd") %> */',
+        '<%= grunt.template.today("yyyy-mm-dd") %> */'
     },
     dist: {
       src: ['src/project.js'],
-      dest: 'dist/built.js',
+      dest: 'dist/built.js'
     },
   },
 });
@@ -156,11 +156,11 @@ grunt.initConfig({
   concat: {
     basic: {
       src: ['src/main.js'],
-      dest: 'dist/basic.js',
+      dest: 'dist/basic.js'
     },
     extras: {
       src: ['src/main.js', 'src/extras.js'],
-      dest: 'dist/with_extras.js',
+      dest: 'dist/with_extras.js'
     },
   },
 });
@@ -181,7 +181,7 @@ grunt.initConfig({
     basic_and_extras: {
       files: {
         'dist/basic.js': ['src/main.js'],
-        'dist/with_extras.js': ['src/main.js', 'src/extras.js'],
+        'dist/with_extras.js': ['src/main.js', 'src/extras.js']
       },
     },
   },
@@ -201,7 +201,7 @@ grunt.initConfig({
   concat: {
     dist: {
       src: ['src/main.js'],
-      dest: 'dist/<%= pkg.name %>-<%= pkg.version %>.js',
+      dest: 'dist/<%= pkg.name %>-<%= pkg.version %>.js'
     },
   },
 });
@@ -219,16 +219,16 @@ grunt.initConfig({
   pkg: grunt.file.readJSON('package.json'),
   dirs: {
     src: 'src/files',
-    dest: 'dist/<%= pkg.name %>/<%= pkg.version %>',
+    dest: 'dist/<%= pkg.name %>/<%= pkg.version %>'
   },
   concat: {
     basic: {
       src: ['<%= dirs.src %>/main.js'],
-      dest: '<%= dirs.dest %>/basic.js',
+      dest: '<%= dirs.dest %>/basic.js'
     },
     extras: {
       src: ['<%= dirs.src %>/main.js', '<%= dirs.src %>/extras.js'],
-      dest: '<%= dirs.dest %>/with_extras.js',
+      dest: '<%= dirs.dest %>/with_extras.js'
     },
   },
 });
@@ -243,7 +243,7 @@ grunt.initConfig({
     missing: {
       src: ['src/invalid_or_missing_file'],
       dest: 'compiled.js',
-      nonull: true,
+      nonull: true
     },
   },
 });
@@ -268,7 +268,7 @@ grunt.initConfig({
         },
       },
       files: {
-        'dist/built.js': ['src/project.js'],
+        'dist/built.js': ['src/project.js']
       },
     },
   },
