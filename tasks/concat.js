@@ -25,7 +25,8 @@ module.exports = function(grunt) {
       process: false,
       sourceMap: false,
       sourceMapName: undefined,
-      sourceMapStyle: 'embed'
+      sourceMapStyle: 'embed',
+      asyncSourceMap: false
     });
 
     // Normalize boolean options that accept options objects.
@@ -105,7 +106,15 @@ module.exports = function(grunt) {
 
       if (sourceMapHelper) {
         sourceMapHelper.add(footer);
-        sourceMapHelper.write();
+
+        if (options.asyncSourceMap) {
+          setTimeout(function () {
+            sourceMapHelper.write();
+          }, 0);
+        } else {
+          sourceMapHelper.write();
+        }
+
         // Add sourceMappingURL to the end.
         src += sourceMapHelper.url();
       }
