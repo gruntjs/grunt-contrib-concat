@@ -72,7 +72,7 @@ module.exports = function(grunt) {
       // Concat banner + specified files + footer.
       var src = banner + f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
+        if (!grunt.file.exists(filepath) || !grunt.file.isFile(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
           return false;
         }
