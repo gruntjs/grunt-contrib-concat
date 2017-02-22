@@ -146,7 +146,7 @@ exports.init = function(grunt) {
 
       var sourceContent;
       // Browserify, as an example, stores a datauri at sourceMappingURL.
-      if (/data:application\/json;(charset:utf-8;)?base64,([^\s]+)/.test(sourceMapFile)) {
+      if (/data:application\/json;(charset.utf-8;)?base64,([^\s]+)/.test(sourceMapFile)) {
         // Set sourceMapPath to the file that the map is inlined.
         sourceMapPath = filename;
         sourceContent = new Buffer(RegExp.$2, 'base64').toString();
