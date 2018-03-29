@@ -9,7 +9,7 @@
 'use strict';
 
 exports.init = function(/*grunt*/) {
-  var exports = {};
+  const exports = {};
 
   // Return the given source code with any leading banner comment stripped.
   exports.stripBanner = function(src, options) {
@@ -17,7 +17,7 @@ exports.init = function(/*grunt*/) {
       options = {};
     }
 
-    var m = [];
+    const m = [];
     if (options.line) {
       // Strip // ... leading banners.
       m.push('(?:.*\\/\\/.*\\r?\\n)+\\s*');
@@ -29,7 +29,7 @@ exports.init = function(/*grunt*/) {
       // Strips only /* ... */ block comment banners, excluding /*! ... */.
       m.push('\\/\\*[^!][\\s\\S]*?\\*\\/');
     }
-    var re = new RegExp('^\\s*(?:' + m.join('|') + ')\\s*', '');
+    const re = new RegExp('^\\s*(?:' + m.join('|') + ')\\s*', '');
     return src.replace(re, '');
   };
 

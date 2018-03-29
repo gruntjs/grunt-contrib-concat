@@ -1,0 +1,19 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "semi": ["error", "always"],
+    "no-var": "error",
+    "prefer-const": "error",
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }]
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017
+  }
+}

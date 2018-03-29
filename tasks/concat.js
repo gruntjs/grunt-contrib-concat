@@ -9,15 +9,16 @@
 'use strict';
 
 module.exports = function(grunt) {
-
   // Internal lib.
-  var comment = require('./lib/comment').init(grunt);
-  var chalk = require('chalk');
-  var sourcemap = require('./lib/sourcemap').init(grunt);
+  const comment = require('./lib/comment').init(grunt);
+  const chalk = require('chalk');
+  const sourcemap = require('./lib/sourcemap').init(grunt);
 
-  grunt.registerMultiTask('concat', 'Concatenate files.', function() {
+  grunt.registerMultiTask('concat', 'Concatenate files.', async function() {
+    const done = this.async();
+
     // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
+    const options = this.options({
       separator: grunt.util.linefeed,
       banner: '',
       footer: '',
@@ -37,22 +38,23 @@ module.exports = function(grunt) {
     }
 
     // Process banner and footer.
-    var banner = grunt.template.process(options.banner);
-    var footer = grunt.template.process(options.footer);
+    const banner = grunt.template.process(options.banner);
+    const footer = grunt.template.process(options.footer);
 
     // Set a local variable for whether to build source maps or not.
-    var sourceMap = options.sourceMap;
+    let sourceMap = options.sourceMap;
 
     // If content is not embedded and it will be modified, either exit or do
     // not make the source map.
     if (
-      sourceMap && options.sourceMapStyle === 'link' &&
-        (options.stripBanners || options.process)
+      sourceMap &&
+      options.sourceMapStyle === 'link' &&
+      (options.stripBanners || options.process)
     ) {
       // Warn and exit if --force isn't set.
       grunt.warn(
         'stripBanners or process option is enabled. ' +
-        'Set sourceMapStyle option to \'embed\' or \'inline\'.'
+          "Set sourceMapStyle option to 'embed' or 'inline'."
       );
       // --force is set, continue on without the source map.
       grunt.log.warn('Skipping creation of source maps.');
@@ -61,28 +63,27 @@ module.exports = function(grunt) {
     }
 
     // Iterate over all src-dest file pairs.
-    this.files.forEach(function(f) {
+    for (const f of this.files) {
       // Initialize source map objects.
-      var sourceMapHelper;
+      let sourceMapHelper;
       if (sourceMap) {
         sourceMapHelper = sourcemap.helper(f, options);
         sourceMapHelper.add(banner);
       }
 
-      // Concat banner + specified files + footer.
-      var src = banner + f.src.filter(function(filepath) {
+      const srcArray = [];
+      for (let i = 0; i < f.src.length; i++) {
+        const filepath = f.src[i];
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
+          continue;
         }
-        return true;
-      }).map(function(filepath, i) {
         if (grunt.file.isDir(filepath)) {
-          return;
+          continue;
         }
         // Read file source.
-        var src = grunt.file.read(filepath);
+        let src = grunt.file.read(filepath);
         // Process files as templates if requested.
         if (typeof options.process === 'function') {
           src = options.process(src, filepath);
@@ -95,13 +96,16 @@ module.exports = function(grunt) {
         }
         // Add the lines of this file to our map.
         if (sourceMapHelper) {
-          src = sourceMapHelper.addlines(src, filepath);
+          src = await sourceMapHelper.addlines(src, filepath);
           if (i < f.src.length - 1) {
             sourceMapHelper.add(options.separator);
           }
         }
-        return src;
-      }).join(options.separator) + footer;
+        srcArray.push(src);
+      }
+
+      // Concat banner + specified files + footer.
+      let src = banner + srcArray.join(options.separator) + footer;
 
       if (sourceMapHelper) {
         sourceMapHelper.add(footer);
@@ -115,7 +119,8 @@ module.exports = function(grunt) {
 
       // Print a success message.
       grunt.verbose.write('File ' + chalk.cyan(f.dest) + ' created.');
-    });
-  });
+    }
 
+    done();
+  });
 };
