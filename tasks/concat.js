@@ -25,7 +25,8 @@ module.exports = function(grunt) {
       process: false,
       sourceMap: false,
       sourceMapName: undefined,
-      sourceMapStyle: 'embed'
+      sourceMapStyle: 'embed',
+      createEmptyFiles: true
     });
 
     // Normalize boolean options that accept options objects.
@@ -110,11 +111,15 @@ module.exports = function(grunt) {
         src += sourceMapHelper.url();
       }
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+      if (!options.createEmptyFiles && /^\s*$/.test(src)) {
+        grunt.verbose.write('No content available.');
+      } else {
+        // Write the destination file.
+        grunt.file.write(f.dest, src);
 
-      // Print a success message.
-      grunt.verbose.write('File ' + chalk.cyan(f.dest) + ' created.');
+        // Print a success message.
+        grunt.verbose.write('File ' + chalk.cyan(f.dest) + ' created.');
+      }
     });
   });
 
