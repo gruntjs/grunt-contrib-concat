@@ -215,7 +215,7 @@ exports.init = function(grunt) {
     var mapfilepath;
     if (this.options.sourceMapStyle === 'inline') {
       var inlineMap = new Buffer(this._write()).toString('base64');
-      mapfilepath = 'data:application/json;base64,' + inlineMap;
+      mapfilepath = 'data:application/json;charset=utf-8;base64,' + inlineMap;
     } else {
       // Compute relative path to source map destination.
       mapfilepath = path.relative(path.dirname(this.files.dest), this.dest);
