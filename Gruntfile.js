@@ -48,11 +48,6 @@ module.exports = function(grunt) {
           'tmp/custom_options': ['test/fixtures/file1', 'test/fixtures/file2']
         }
       },
-      handling_invalid_files: {
-        src: ['test/fixtures/file1', 'invalid_file/should_warn/but_not_fail', 'test/fixtures/file2'],
-        dest: 'tmp/handling_invalid_files',
-        nonull: true
-      },
       process_function: {
         options: {
           process: function(src, filepath) {
@@ -158,6 +153,31 @@ module.exports = function(grunt) {
       tests: ['test/*_test.js']
     }
 
+  });
+
+  // Encapsulates tasks which invoke `grunt.fail.warn` and should abort.
+  grunt.registerTask('concat-warn', function() {
+    grunt.config('concat', {
+      handling_invalid_files: {
+        src: ['test/fixtures/file1', 'invalid_file/should_warn/and_abort', 'test/fixtures/file2'],
+        dest: 'tmp/handling_invalid_files',
+        nonull: true
+      }
+    });
+    grunt.task.run(['concat']);
+  });
+
+  // Encapsulates tasks which invoke `grunt.fail.warn` and should abort, but the
+  // test is checking behavior in the case of a user-specified `--force` flag.
+  grunt.registerTask('concat-force', function() {
+    grunt.config('concat', {
+      handling_invalid_files_force: {
+        src: ['test/fixtures/file1', 'invalid_file/should_warn/but_not_fail', 'test/fixtures/file2'],
+        dest: 'tmp/handling_invalid_files_force',
+        nonull: true
+      }
+    });
+    grunt.task.run(['concat']);
   });
 
   // Actually load this plugin's task(s).

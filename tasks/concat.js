@@ -60,62 +60,80 @@ module.exports = function(grunt) {
       sourceMap = false;
     }
 
-    // Iterate over all src-dest file pairs.
-    this.files.forEach(function(f) {
-      // Initialize source map objects.
-      var sourceMapHelper;
-      if (sourceMap) {
-        sourceMapHelper = sourcemap.helper(f, options);
-        sourceMapHelper.add(banner);
-      }
+    var exitEarly = {};
+    try {
+      // Iterate over all src-dest file pairs.
+      this.files.forEach(function(f) {
+        // Initialize source map objects.
+        var sourceMapHelper;
+        if (sourceMap) {
+          sourceMapHelper = sourcemap.helper(f, options);
+          sourceMapHelper.add(banner);
+        }
 
-      // Concat banner + specified files + footer.
-      var src = banner + f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        }
-        return true;
-      }).map(function(filepath, i) {
-        if (grunt.file.isDir(filepath)) {
-          return;
-        }
-        // Read file source.
-        var src = grunt.file.read(filepath);
-        // Process files as templates if requested.
-        if (typeof options.process === 'function') {
-          src = options.process(src, filepath);
-        } else if (options.process) {
-          src = grunt.template.process(src, options.process);
-        }
-        // Strip banners if requested.
-        if (options.stripBanners) {
-          src = comment.stripBanner(src, options.stripBanners);
-        }
-        // Add the lines of this file to our map.
-        if (sourceMapHelper) {
-          src = sourceMapHelper.addlines(src, filepath);
-          if (i < f.src.length - 1) {
-            sourceMapHelper.add(options.separator);
+        // Concat banner + specified files + footer.
+        var src = banner + f.src.filter(function(filepath) {
+          // Warn on invalid source files (if nonull was set). They will be
+          // removed if --force is specified.
+          if (!grunt.file.exists(filepath)) {
+            grunt.fail.warn('Source file "' + filepath + '" not found.');
+            if (!grunt.option('force')) {
+              // See the catch clause below for why we do this.
+              throw exitEarly;
+            }
+            return false;
           }
+          return true;
+        }).map(function(filepath, i) {
+          if (grunt.file.isDir(filepath)) {
+            return;
+          }
+          // Read file source.
+          var src = grunt.file.read(filepath);
+          // Process files as templates if requested.
+          if (typeof options.process === 'function') {
+            src = options.process(src, filepath);
+          } else if (options.process) {
+            src = grunt.template.process(src, options.process);
+          }
+          // Strip banners if requested.
+          if (options.stripBanners) {
+            src = comment.stripBanner(src, options.stripBanners);
+          }
+          // Add the lines of this file to our map.
+          if (sourceMapHelper) {
+            src = sourceMapHelper.addlines(src, filepath);
+            if (i < f.src.length - 1) {
+              sourceMapHelper.add(options.separator);
+            }
+          }
+          return src;
+        }).join(options.separator) + footer;
+
+        if (sourceMapHelper) {
+          sourceMapHelper.add(footer);
+          sourceMapHelper.write();
+          // Add sourceMappingURL to the end.
+          src += sourceMapHelper.url();
         }
-        return src;
-      }).join(options.separator) + footer;
 
-      if (sourceMapHelper) {
-        sourceMapHelper.add(footer);
-        sourceMapHelper.write();
-        // Add sourceMappingURL to the end.
-        src += sourceMapHelper.url();
+        // Write the destination file.
+        grunt.file.write(f.dest, src);
+
+        // Print a success message.
+        grunt.verbose.write('File ' + chalk.cyan(f.dest) + ' created.');
+      });
+    } catch (reason) {
+      if (reason === exitEarly) {
+        // grunt.fail.warn uses the "exit" library, which doesn't stop the
+        // process synchronously on Node.js 0.10 on Windows, which could result
+        // in files still being concatenated even when some are missing. See:
+        // https://github.com/nodejs/node-v0.x-archive/issues/3584#issuecomment-8034529
+        // Therefore, we throw a unique reference to emulate exiting early.
+        return;
       }
-
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
-
-      // Print a success message.
-      grunt.verbose.write('File ' + chalk.cyan(f.dest) + ' created.');
-    });
+      throw reason;
+    }
   });
 
 };

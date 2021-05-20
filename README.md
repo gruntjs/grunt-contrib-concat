@@ -235,7 +235,7 @@ grunt.initConfig({
 ```
 
 #### Invalid or Missing Files Warning
-If you would like the `concat` task to warn if a given file is missing or invalid be sure to set `nonull` to `true`:
+If you would like the `concat` task to warn and abort if a given file is missing or invalid be sure to set `nonull` to `true`:
 
 ```js
 grunt.initConfig({
@@ -248,6 +248,8 @@ grunt.initConfig({
   },
 });
 ```
+
+Additionally invoke grunt with `--force` to skip over missing files.
 
 See [configuring files for a task](http://gruntjs.com/configuring-tasks#files) for how to configure file globbing in Grunt.
 
@@ -298,4 +300,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Wed Apr 20 2016 08:41:44.*
+*This file was generated on Sun Jun 05 2016 08:36:20.*

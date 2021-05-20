@@ -2,6 +2,11 @@
 
 var grunt = require('grunt');
 var comment = require('../tasks/lib/comment').init(grunt);
+var exec = require('child_process').exec;
+var path = require('path');
+var fs = require('fs');
+
+var execOptions = {cwd: path.join(__dirname, '..')};
 
 function getNormalizedFile(filepath) {
   return grunt.util.normalizelf(grunt.file.read(filepath));
@@ -27,13 +32,30 @@ exports.concat = {
     test.done();
   },
   handling_invalid_files: function(test) {
-    test.expect(1);
+    test.expect(3);
 
-    var actual = getNormalizedFile('tmp/handling_invalid_files');
-    var expected = getNormalizedFile('test/expected/handling_invalid_files');
-    test.equal(actual, expected, 'will have warned, but should not fail.');
+    exec('grunt concat-warn', execOptions, function(error, stdout) {
+      test.ok(stdout.indexOf('Warning:') > -1, 'should print a warning.');
+      test.ok(stdout.indexOf('Aborted due to warnings.') > -1, 'should abort.');
 
-    test.done();
+      fs.exists('tmp/handling_invalid_files', function(exists) {
+        test.ok(!exists, 'should not have created a file.');
+        test.done();
+      });
+    });
+  },
+  handling_invalid_files_force: function(test) {
+    test.expect(2);
+
+    exec('grunt concat-force --force', execOptions, function(error, stdout) {
+      test.ok(stdout.indexOf('Warning:') > -1, 'should print a warning.');
+
+      var actual = getNormalizedFile('tmp/handling_invalid_files_force');
+      var expected = getNormalizedFile('test/expected/handling_invalid_files_force');
+      test.equal(actual, expected, 'should not fail.');
+
+      test.done();
+    });
   },
   strip_banner: function(test) {
     test.expect(10);
