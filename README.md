@@ -1,4 +1,4 @@
-# grunt-contrib-concat v1.0.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-concat.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-concat) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/l42173901ms416km/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-concat/branch/master)
+# grunt-contrib-concat v1.0.1 [![Build Status](https://github.com/gruntjs/grunt-contrib-concat/workflows/Tests/badge.svg)](https://github.com/gruntjs/grunt-contrib-concat/actions?workflow=Tests)
 
 > Concatenate files.
 
@@ -6,7 +6,7 @@
 
 ## Getting Started
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+If you haven't used [Grunt](https://gruntjs.com/) before, be sure to check out the [Getting Started](https://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](https://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install grunt-contrib-concat --save-dev
@@ -298,4 +298,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Wed Apr 20 2016 08:41:44.*
+*This file was generated on Thu Oct 07 2021 23:00:09.*
