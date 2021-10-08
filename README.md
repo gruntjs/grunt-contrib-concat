@@ -1,4 +1,4 @@
-# grunt-contrib-concat v1.0.1 [![Build Status](https://github.com/gruntjs/grunt-contrib-concat/workflows/Tests/badge.svg)](https://github.com/gruntjs/grunt-contrib-concat/actions?workflow=Tests)
+# grunt-contrib-concat v2.0.0 [![Build Status](https://github.com/gruntjs/grunt-contrib-concat/workflows/Tests/badge.svg)](https://github.com/gruntjs/grunt-contrib-concat/actions?workflow=Tests)
 
 > Concatenate files.
 
@@ -280,6 +280,7 @@ grunt.initConfig({
 
 ## Release History
 
+ * 2021-10-07   v2.0.0   Update dependencies Requires node.js v12+
  * 2016-04-20   v1.0.1   Fix for concatenating multiple source map files.
  * 2016-02-20   v1.0.0   Update source-map to 0.5.3. Tag Grunt as peerDep to >=0.4.0. Make source maps generation a little faster. Add `charset:utf-8` to `sourceMappingURL`.
  * 2015-02-20   v0.5.1   Fix path issues with source maps on Windows.
@@ -298,4 +299,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Thu Oct 07 2021 23:00:09.*
+*This file was generated on Thu Oct 07 2021 23:04:00.*
