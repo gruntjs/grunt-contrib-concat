@@ -32,7 +32,8 @@ exports.init = function(grunt) {
     // ensure we're using forward slashes, because these are URLs
     var file = path.relative(path.dirname(this.dest), this.files.dest).replace(/\\/g, '/');
     var generator = new SourceMapGenerator({
-      file: file
+      file: file,
+      sourceRoot: this.options.sourceMapRoot
     });
     this.file = file;
     this.generator = generator;
