@@ -246,7 +246,9 @@ exports.init = function(grunt) {
       this.dest,
       JSON.stringify(newSourceMap, null, '')
     );
-    grunt.verbose.writeln('Source map ' + chalk.cyan(this.dest) + ' created.');
+    if (!!this.options.displayLog) {
+      grunt.verbose.writeln('Source map ' + chalk.cyan(this.dest) + ' created.');
+    }
 
   };
 
