@@ -106,5 +106,20 @@ exports.concat = {
     test.equal(actual, expected, 'should output the css map.');
 
     test.done();
+  },
+  create_empty_files_option: function(test) {
+    test.expect(3);
+
+    var actual = getNormalizedFile('tmp/create_empty_files_option_one.js');
+    var expected = '';
+    test.equal(actual, expected, 'should create empty file.');
+
+    actual = grunt.file.exists('tmp/create_empty_files_option_two.js');
+    test.ok(!actual, 'should not create file.');
+
+    actual = grunt.file.exists('tmp/create_empty_files_option_three.js');
+    test.ok(!actual, 'should not create file.');
+
+    test.done();
   }
 };
