@@ -50,6 +50,12 @@ This string will be appended to the end of the concatenated output. It is proces
 
 _(Default processing options are explained in the [grunt.template.process][] documentation)_
 
+#### log
+Type: `Boolean`  
+Default: `true`
+
+This will allow users to decide between grunt.log or grunt.verbose.
+
 #### stripBanners
 Type: `Boolean` `Object`  
 Default: `false`
