@@ -150,6 +150,36 @@ module.exports = function(grunt) {
             'test/fixtures/css2.css'
           ]
         }
+      },
+      create_empty_files_option_one: {
+        options: {
+          createEmptyFiles: true
+        },
+        files: {
+          'tmp/create_empty_files_option_one.js': [
+            'test/fixtures/not_available.js'
+          ]
+        }
+      },
+      create_empty_files_option_two: {
+        options: {
+          createEmptyFiles: false
+        },
+        files: {
+          'tmp/create_empty_files_option_two.js': [
+            'test/fixtures/not_available.js'
+          ]
+        }
+      },
+      create_empty_files_option_three: {
+        options: {
+          createEmptyFiles: false
+        },
+        files: {
+          'tmp/create_empty_files_option_three.js': [
+            'test/fixtures/empty.js'
+          ]
+        }
       }
     },
 
