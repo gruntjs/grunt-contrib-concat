@@ -60,6 +60,8 @@ module.exports = function(grunt) {
       sourceMap = false;
     }
 
+    var outputFiles = [];
+
     // Iterate over all src-dest file pairs.
     this.files.forEach(function(f) {
       // Initialize source map objects.
@@ -114,8 +116,14 @@ module.exports = function(grunt) {
       grunt.file.write(f.dest, src);
 
       // Print a success message.
-      grunt.verbose.write('File ' + chalk.cyan(f.dest) + ' created.');
+      if (!!options.displayLog) {
+        grunt.verbose.write('File ' + chalk.cyan(f.dest) + ' created.');
+      }
+      outputFiles.push(chalk.cyan(f.dest));
     });
+
+    grunt.verbose.write(outputFiles.length + ' new files created.');
+
   });
 
 };
